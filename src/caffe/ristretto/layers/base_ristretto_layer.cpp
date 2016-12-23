@@ -47,7 +47,7 @@ void BaseRistrettoLayer<Dtype>::Trim2FixedPoint_cpu(Dtype* data, const int cnt, 
 	}
 	else
 	{
-		max_data = pow(2, bit_width - 1) * pow(2, -fl);
+		max_data = (pow(2, bit_width) - 1) * pow(2, -fl);
 		min_data = 0;
 	}
 

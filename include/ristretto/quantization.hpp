@@ -38,6 +38,10 @@ private:
   void EditNetQuantizationParameter(NetParameter* param,
 				vector<int> params_bw,vector<int> params_fl,
 				vector<int> data_bw,vector<int> data_fl,vector<int> data_sign);
+
+  //比较两组配置的精度大小
+  int CompareBwCfg(vector<int>& bwcfg1,vector<int>& bwcfg2);
+  
   //配置参数(用户输入的)
   string model_;
   string weights_;
@@ -56,7 +60,8 @@ private:
   vector<vector<int> > calc_valid_data_fl_;			//对应与上面的每一个bw 的fl 
   vector<vector<int> > calc_valid_data_sign_;		//对应与上面的每一个bw 的s_sign
   vector<float> max_params_, max_data_, min_data_;//统计所得的最值
-
+  vector<int> cfg_valid_data_bw_skip_;	//忽略标志
+ 
   //注意:  权值参数的bw 直接根据用户配置的位宽来
   //固定使用有符号数，并且fl  直接根据max 计算就好了。
   vector<int> calc_params_bw_;

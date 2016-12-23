@@ -83,9 +83,23 @@ void Quantization::QuantizeNet()
 	CalcFlSign(100,net_train);
 	delete net_train;
 
+	//获取校验集上的基本分
+	NetParameter param;
+	caffe::ReadNetParamsFromTextFileOrDie(model_, &param);
+	param.mutable_state()->set_phase(caffe::TEST);
+	Net<float>*net_val = new Net<float>(param, NULL);
+    	net_val->CopyTrainedLayersFrom(weights_);
+	CalcBatchAccuracy(iterations_,net_val,&test_score_baseline_,0);
+	delete net_val;
+
 	//再在校验集上进行全局最优搜索.
+	cfg_valid_data_bw_skip_.resize(cfg_valid_data_bw_.size());
 	for(int i=0;i<cfg_valid_data_bw_.size();i++)
 	{
+		if(cfg_valid_data_bw_skip_[i] ==1)
+		{
+			continue;
+		}
 		NetParameter param;
 		caffe::ReadNetParamsFromTextFileOrDie(model_, &param);
 		param.mutable_state()->set_phase(caffe::TEST);
@@ -97,12 +111,23 @@ void Quantization::QuantizeNet()
 
 		float accuracy;
 		CalcBatchAccuracy(iterations_,net_val,&accuracy,0);
-		if ( accuracy + error_margin_ / 100 < test_score_baseline_ ) 
+		if ( accuracy + error_margin_ / 100 > test_score_baseline_ ) 
 		{
 			//输出到文件中去
 			char prototxt_name[128] = {0,};
 			sprintf(prototxt_name,"accuracy[%f]_cfg[%d]_%s",accuracy,i,model_quantized_.c_str());
-			WriteProtoToTextFile(param, prototxt_name);			
+			WriteProtoToTextFile(param, prototxt_name);
+		}
+		else
+		{
+			//遍历其后所有的配置
+			for(int j=i+1;j<cfg_valid_data_bw_.size();j++)
+			{
+				if(CompareBwCfg(cfg_valid_data_bw_[i],cfg_valid_data_bw_[j])>0)
+				{
+					cfg_valid_data_bw_skip_[j] = 1;
+				}
+			}
 		}
 		delete net_val;
 	}
@@ -171,7 +196,7 @@ vector<int> Quantization::GetValidBw(string cur_name)
 {
 	vector<int> valid_bw;
 	valid_bw.clear();
-	
+
 	char tmp[32] = {0,};
 	memset(tmp,0,sizeof(tmp));
 	if (GetStringValue(quantize_cfg_.c_str(), cur_name.c_str(), '=', tmp, NULL) >= 0)
@@ -300,8 +325,8 @@ void Quantization::CalcFlSign(const int iterations,Net<float>* caffe_net)
 			{
 				int is_sign = (min_data_[layer_id]>=0)?0:1;
 				int il  = (int)ceil(log2(max_data_[layer_id])+is_sign);	
-				int fl_a = cfg_valid_data_bw_[i][layer_id]-il;	//定标
-				int fl_b = fl_a-1;
+				int fl_a = cfg_valid_data_bw_[i][layer_id]-il;	//定标--- 不向上截断
+				int fl_b = fl_a+1;
 
 				float  lost_a = caffe_net->CalcDataLoss(layer_id,cfg_valid_data_bw_[i][layer_id],fl_a,is_sign);
 				float  lost_b = caffe_net->CalcDataLoss(layer_id,cfg_valid_data_bw_[i][layer_id],fl_b,is_sign);
@@ -433,3 +458,16 @@ void Quantization::EditNetQuantizationParameter(NetParameter* param,
 	}
 }
 
+//比较两组配置的精度大小
+int Quantization::CompareBwCfg(vector<int>& bwcfg1,vector<int>& bwcfg2)
+{
+	assert(bwcfg1.size() == bwcfg2.size());
+	for(int i=0;i<bwcfg1.size();i++)
+	{
+		if(bwcfg1[i] < bwcfg2[i])
+		{
+			return 0;
+		}
+	}
+	return 1;
+}

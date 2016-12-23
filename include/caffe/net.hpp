@@ -233,8 +233,7 @@ class Net {
   Dtype findMin(Blob<Dtype>* blob);
   //计算量化能量差
   float CalcDataLoss(int layer_id,int bw,int fl,int is_sign);
-  int Float2Fix(Dtype val,int bw,int fl,int is_sign);
-
+  float Float2FixTruncate(Dtype val,int bw,int fl,int is_sign);
  protected:
   // Helpers for Init.
   /// @brief Append a new top blob to the net.

@@ -386,7 +386,7 @@ Dtype Net<Dtype>::findMin(Blob<Dtype>* blob) {
   int cnt = blob->count();
   Dtype min_val = (Dtype)10000;
   for (int i = 0; i < cnt; ++i) {
-    min_val = std::min(min_val, (Dtype)fabs(data[i]));
+    min_val = std::min(min_val, (Dtype)(data[i]));
   }
   return min_val;
 }
@@ -420,9 +420,9 @@ void Net<Dtype>::RangeInLayers(vector<Dtype>*max_params,vector<Dtype>* max_data,
 
 //浮点转定点
 template <typename Dtype>
-int Net<Dtype>::Float2Fix(Dtype val,int bw,int fl,int is_sign)
+float Net<Dtype>::Float2FixTruncate(Dtype val,int bw,int fl,int is_sign)
 {
-	int max,min;
+	float max,min;
 	if(bw == 8)
 	{
 		if(is_sign)
@@ -483,7 +483,7 @@ float Net<Dtype>::CalcDataLoss(int layer_id,int bw,int fl,int is_sign)
 	int cnt = top_vecs_[layer_id][0]->count(); 
 	for (int i = 0; i < cnt; ++i) 
 	{
-		dataloss += fabs(data[i] - Float2Fix(data[i],bw,fl,is_sign));
+		dataloss += fabs(data[i] - Float2FixTruncate(data[i],bw,fl,is_sign));
 	}
 	return dataloss;
 }
