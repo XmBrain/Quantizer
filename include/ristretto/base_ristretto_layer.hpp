@@ -10,6 +10,7 @@
 #include "caffe/layers/lrn_layer.hpp"
 #include "caffe/layers/pooling_layer.hpp"
 #include "caffe/layers/relu_layer.hpp"
+#include "caffe/layers/data_layer.hpp"
 #include "caffe/data_reader.hpp"
 #include "caffe/proto/caffe.pb.h"
 
@@ -47,6 +48,8 @@ public:
 protected:
 	virtual void Forward_cpu(const vector<Blob<Dtype>*>& bottom,
 								const vector<Blob<Dtype>*>& top);
+	virtual void Forward_gpu(const vector<Blob<Dtype>*>& bottom,
+								const vector<Blob<Dtype>*>& top);
 };
 
 /**
@@ -61,6 +64,8 @@ public:
 protected:
 	virtual void Forward_cpu(const vector<Blob<Dtype>*>& bottom,
 								const vector<Blob<Dtype>*>& top);
+	virtual void Forward_gpu(const vector<Blob<Dtype>*>& bottom,
+								const vector<Blob<Dtype>*>& top);	
 };
 
 /**
@@ -68,15 +73,17 @@ protected:
  * and activations.
  */
 template <typename Dtype>
-class FcRistrettoLayer : public InnerProductLayer<Dtype>,
+class InnerProductRistrettoLayer : public InnerProductLayer<Dtype>,
 							public BaseRistrettoLayer<Dtype>
 {
 public:
-	explicit FcRistrettoLayer(const LayerParameter& param);
-	virtual inline const char* type() const { return "FcRistretto"; }
+	explicit InnerProductRistrettoLayer(const LayerParameter& param);
+	virtual inline const char* type() const { return "InnerProductRistretto"; }
 protected:
 	virtual void Forward_cpu(const vector<Blob<Dtype>*>& bottom,
 								const vector<Blob<Dtype>*>& top);
+	virtual void Forward_gpu(const vector<Blob<Dtype>*>& bottom,
+								const vector<Blob<Dtype>*>& top);	
 };
 
 template <typename Dtype>
@@ -89,6 +96,8 @@ public:
 protected:
 	virtual void Forward_cpu(const vector<Blob<Dtype>*>& bottom,
 								const vector<Blob<Dtype>*>& top);
+	virtual void Forward_gpu(const vector<Blob<Dtype>*>& bottom,
+								const vector<Blob<Dtype>*>& top);	
 };
 
 template <typename Dtype>
@@ -101,6 +110,8 @@ public:
 protected:
 	virtual void Forward_cpu(const vector<Blob<Dtype>*>& bottom,
 								const vector<Blob<Dtype>*>& top);
+	virtual void Forward_gpu(const vector<Blob<Dtype>*>& bottom,
+								const vector<Blob<Dtype>*>& top);	
 };
 
 template <typename Dtype>
@@ -113,6 +124,19 @@ public:
 protected:
 	virtual void Forward_cpu(const vector<Blob<Dtype>*>& bottom,
 								const vector<Blob<Dtype>*>& top);
+	virtual void Forward_gpu(const vector<Blob<Dtype>*>& bottom,
+								const vector<Blob<Dtype>*>& top);	
+};
+
+template <typename Dtype>
+class DataRistrettoLayer : public DataLayer<Dtype>,
+									public BaseRistrettoLayer<Dtype> 
+{
+public:
+	explicit DataRistrettoLayer(const LayerParameter& param);
+	virtual inline const char* type() const { return "DataRistretto"; }
+protected:
+  	virtual void load_batch(Batch<Dtype>* batch);
 };
 
 }  // namespace caffe

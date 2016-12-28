@@ -23,14 +23,18 @@ void ReLURistrettoLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
     const vector<Blob<Dtype>*>& top) 
 {
 	//调用父类的前向运算
-	ReLULayer<Dtype>::Forward_cpu(bottom,top);
+	//ReLULayer<Dtype>::Forward_cpu(bottom,top);
+	ReLULayer<Dtype>::Forward_gpu(bottom,top);
 	//对结果进行量化输出
 	this->QuantizeLayerOutputs_cpu(top[0]->mutable_cpu_data(), top[0]->count());
 }
 
-#ifdef CPU_ONLY
-STUB_GPU(ReLURistrettoLayer);
-#endif
+template <typename Dtype>
+void ReLURistrettoLayer<Dtype>::Forward_gpu(
+	const vector<Blob<Dtype>*>& bottom, const vector<Blob<Dtype>*>& top) 
+{
+	return Forward_cpu(bottom, top);
+}
 
 INSTANTIATE_CLASS(ReLURistrettoLayer);
 REGISTER_LAYER_CLASS(ReLURistretto);

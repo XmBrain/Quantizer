@@ -23,14 +23,18 @@ void PoolingRistrettoLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& botto
     const vector<Blob<Dtype>*>& top) 
 {
 	//调用父类的前向运算
-	PoolingLayer<Dtype>::Forward_cpu(bottom,top);
+	//PoolingLayer<Dtype>::Forward_cpu(bottom,top);
+	PoolingLayer<Dtype>::Forward_gpu(bottom,top);
 	//对结果进行量化输出
 	this->QuantizeLayerOutputs_cpu(top[0]->mutable_cpu_data(), top[0]->count());
 }
 
-#ifdef CPU_ONLY
-STUB_GPU(PoolingRistrettoLayer);
-#endif
+template <typename Dtype>
+void PoolingRistrettoLayer<Dtype>::Forward_gpu(
+	const vector<Blob<Dtype>*>& bottom, const vector<Blob<Dtype>*>& top) 
+{
+	return Forward_cpu(bottom, top);
+}
 
 INSTANTIATE_CLASS(PoolingRistrettoLayer);
 REGISTER_LAYER_CLASS(PoolingRistretto);

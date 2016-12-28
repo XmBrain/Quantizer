@@ -1,0 +1,310 @@
+name: "detect_train_val"
+state {
+  phase: TEST
+}
+layer {
+  name: "mydata"
+  type: "MyData"
+  top: "data"
+  top: "label_map"
+  include {
+    phase: TRAIN
+  }
+  my_data_param {
+    source: "/workspace/plate_detect/data/_more_mark_20160719/imgcfglist.txt"
+    batch_size: 32
+    shuffle: true
+    is_color: true
+    root_folder: "/workspace/plate_detect/data/"
+    lable_mode: 0
+  }
+}
+layer {
+  name: "mydata"
+  type: "MyData"
+  top: "data"
+  top: "label_pos"
+  include {
+    phase: TEST
+  }
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 0
+    is_sign_data: 0
+  }
+  my_data_param {
+    source: "/workspace/plate_detect/data/mark_20160819/imgcfglist.txt"
+    batch_size: 1
+    shuffle: false
+    is_color: true
+    root_folder: "/workspace/plate_detect/data/"
+    lable_mode: 1
+  }
+}
+layer {
+  name: "conv1"
+  type: "ConvolutionRistretto"
+  bottom: "data"
+  top: "conv1"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  convolution_param {
+    num_output: 10
+    pad: 2
+    kernel_size: 5
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 9
+    bw_layer_data: 8
+    fl_layer_data: -1
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "relu1"
+  type: "ReLURistretto"
+  bottom: "conv1"
+  top: "conv1"
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: -1
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "pool1"
+  type: "PoolingRistretto"
+  bottom: "conv1"
+  top: "pool1"
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 3
+  }
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: -1
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "conv2"
+  type: "ConvolutionRistretto"
+  bottom: "pool1"
+  top: "conv2"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  convolution_param {
+    num_output: 10
+    pad: 2
+    kernel_size: 5
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 9
+    bw_layer_data: 8
+    fl_layer_data: 1
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "relu2"
+  type: "ReLURistretto"
+  bottom: "conv2"
+  top: "conv2"
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 1
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "pool2"
+  type: "PoolingRistretto"
+  bottom: "conv2"
+  top: "pool2"
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 3
+  }
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 1
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "conv3"
+  type: "ConvolutionRistretto"
+  bottom: "pool2"
+  top: "conv3"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  convolution_param {
+    num_output: 2
+    pad: 2
+    kernel_size: 5
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 9
+    bw_layer_data: 8
+    fl_layer_data: 1
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "upscore"
+  type: "DeconvolutionRistretto"
+  bottom: "conv3"
+  top: "upscore"
+  param {
+    lr_mult: 0
+  }
+  convolution_param {
+    num_output: 2
+    bias_term: false
+    kernel_size: 18
+    stride: 9
+  }
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 1
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "target"
+  type: "Crop"
+  bottom: "upscore"
+  bottom: "data"
+  top: "target"
+  crop_param {
+    offset: 4
+    offset: 7
+  }
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 1
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "loss"
+  type: "BiasSoftmaxWithLoss"
+  bottom: "target"
+  bottom: "label_map"
+  top: "loss"
+  include {
+    phase: TRAIN
+  }
+  loss_param {
+    normalize: true
+  }
+}
+layer {
+  name: "score1"
+  type: "Softmax"
+  bottom: "target"
+  top: "score1"
+  include {
+    phase: TEST
+  }
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "region_pos"
+  type: "RegionSelect"
+  bottom: "score1"
+  top: "region_pos"
+  include {
+    phase: TEST
+  }
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 16
+    fl_layer_data: 5
+    is_sign_data: 0
+  }
+  regionselect_param {
+    area_min: 3300
+    area_max: 30000
+    max_count: 32
+  }
+}
+layer {
+  name: "accuracy_iou"
+  type: "AccuracyIOU"
+  bottom: "label_pos"
+  bottom: "region_pos"
+  top: "accuracy_iou"
+  include {
+    phase: TEST
+  }
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 1
+    is_sign_data: 0
+  }
+  accuracy_iou_param {
+    iou_threshold: 50
+  }
+}

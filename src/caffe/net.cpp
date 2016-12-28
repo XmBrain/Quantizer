@@ -4,6 +4,10 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
 
 #include "hdf5.h"
 
@@ -392,100 +396,38 @@ Dtype Net<Dtype>::findMin(Blob<Dtype>* blob) {
 }
 
 //geyijun@2016-12-10
-//求取所有层的最大值
+//统计特定层的参数和数据范围
 template <typename Dtype>
-void Net<Dtype>::RangeInLayers(vector<Dtype>*max_params,vector<Dtype>* max_data,vector<Dtype>* min_data)
+void Net<Dtype>::RangeInLayers(vector<string>& layer_name,vector<Dtype>*max_params,vector<Dtype>* max_data,vector<Dtype>* min_data)
 {
-        max_params->resize(layers_.size(),0);
-        max_data->resize(layers_.size(),0);
-        min_data->resize(layers_.size(),0);
+	max_params->resize(layer_name.size(),0);
+	max_data->resize(layer_name.size(),0);
+	min_data->resize(layer_name.size(),0);
+	int index = 0;
 	for (int layer_id = 0; layer_id < layers_.size(); ++layer_id) 
 	{
+		string name = this->layer_names()[layer_id];
+		vector<string>::iterator found_iter = find(layer_name.begin( ), layer_name.end( ),name); 
+    		if ( found_iter == layer_name.end( ) ) //没找到
+    		{
+    			continue;
+    		}
 		Dtype tmp_val = findMax(top_vecs_[layer_id][0]);
-		max_data->at(layer_id) = std::max(max_data->at(layer_id), tmp_val);
+		max_data->at(index) = std::max(max_data->at(index), tmp_val);
 		tmp_val = findMin(top_vecs_[layer_id][0]);
-		min_data->at(layer_id) = std::min(min_data->at(layer_id), tmp_val);
+		min_data->at(index) = std::min(min_data->at(index), tmp_val);
 		if (strcmp(layers_[layer_id]->type(), "Convolution") == 0 
 		||strcmp(layers_[layer_id]->type(), "InnerProduct") == 0) 
 		{
 			tmp_val = findMax(&(*layers_[layer_id]->blobs()[0]));
-			max_params->at(layer_id) = std::max(max_params->at(layer_id), tmp_val);
+			max_params->at(index) = std::max(max_params->at(index), tmp_val);
 		}
 		else
 		{
-			max_params	->at(layer_id) = 0;
+			max_params	->at(index) = 0;
 		}
+		index++;
 	}
-}
-
-//浮点转定点
-template <typename Dtype>
-float Net<Dtype>::Float2FixTruncate(Dtype val,int bw,int fl,int is_sign)
-{
-	float max,min;
-	if(bw == 8)
-	{
-		if(is_sign)
-		{
-			max = 127;
-			min = -128;
-		}
-		else
-		{
-			max = 0xff;
-			min = 0;
-		}
-	}
-	else if(bw == 16)
-	{
-		if(is_sign)
-		{
-			max = 32767;
-			min = -32768;
-		}
-		else
-		{
-			max = 0xffff;
-			min = 0;
-		}
-	}
-	else if(bw == 32)
-	{
-		if(is_sign)
-		{
-			max = 2147483647;
-			min = -2147483648;
-		}
-		else
-		{
-			max = 0xffffffff;
-			min = 0;
-		}
-	}
-	//判断溢出
-	if (val*pow((float)2,fl) > max)
-	{
-		return max;
-	}
-	else if (val*pow((float)2,fl) < min)
-	{
-		return min;
-	}
-	return (val * pow((float)2,fl));
-}
-
-//计算量化能量差
-template <typename Dtype>
-float Net<Dtype>::CalcDataLoss(int layer_id,int bw,int fl,int is_sign)
-{
-	float dataloss = 0;
-	const Dtype* data = top_vecs_[layer_id][0]->cpu_data();
-	int cnt = top_vecs_[layer_id][0]->count(); 
-	for (int i = 0; i < cnt; ++i) 
-	{
-		dataloss += fabs(data[i] - Float2FixTruncate(data[i],bw,fl,is_sign));
-	}
-	return dataloss;
 }
 
 // Helper for Net::Init: add a new top blob to the net.

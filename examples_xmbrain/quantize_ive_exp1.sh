@@ -1,0 +1,1 @@
+../build/tools/ristretto quantize -model ./ive_exp1/detect_train_val.prototxt -weights ./ive_exp1/_iter_10000.caffemodel -quantize_cfg ./ive_exp1/bw_8.cfg -model_quantized ./ive_exp1/qz/ -iterations 500 -error_margin 5 -gpu all

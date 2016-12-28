@@ -8,7 +8,7 @@
 namespace caffe {
 
 template <typename Dtype>
-FcRistrettoLayer<Dtype>::FcRistrettoLayer(const LayerParameter& param)
+InnerProductRistrettoLayer<Dtype>::InnerProductRistrettoLayer(const LayerParameter& param)
       : InnerProductLayer<Dtype>(param), BaseRistrettoLayer<Dtype>() 
 {
 	this->bw_params_ = this->layer_param_.quantization_param().bw_params();
@@ -19,22 +19,26 @@ FcRistrettoLayer<Dtype>::FcRistrettoLayer(const LayerParameter& param)
 }
 
 template <typename Dtype>
-void FcRistrettoLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
+void InnerProductRistrettoLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
     const vector<Blob<Dtype>*>& top) 
 {
 	//对权值参数进行量化
 	this->QuantizeWeights_cpu(this->blobs_, this->bias_term_);
 	//调用父类的前向运算
-	InnerProductLayer<Dtype>::Forward_cpu(bottom,top);
+	//InnerProductLayer<Dtype>::Forward_cpu(bottom,top);
+	InnerProductLayer<Dtype>::Forward_gpu(bottom,top);
 	//对结果进行量化输出
 	this->QuantizeLayerOutputs_cpu(top[0]->mutable_cpu_data(), top[0]->count());
 }
 
-#ifdef CPU_ONLY
-STUB_GPU(FcRistrettoLayer);
-#endif
+template <typename Dtype>
+void InnerProductRistrettoLayer<Dtype>::Forward_gpu(
+	const vector<Blob<Dtype>*>& bottom, const vector<Blob<Dtype>*>& top) 
+{
+	return Forward_cpu(bottom, top);
+}
 
-INSTANTIATE_CLASS(FcRistrettoLayer);
-REGISTER_LAYER_CLASS(FcRistretto);
+INSTANTIATE_CLASS(InnerProductRistrettoLayer);
+REGISTER_LAYER_CLASS(InnerProductRistretto);
 
 }  // namespace caffe

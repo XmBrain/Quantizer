@@ -379,6 +379,9 @@ message LayerParameter {
   optional HDF5OutputParameter hdf5_output_param = 113;
   optional HingeLossParameter hinge_loss_param = 114;
   optional ImageDataParameter image_data_param = 115;
+  optional MyDataParameter my_data_param = 155;			//geyijun@20160721加入自己层的参数 
+  optional RegionSelectParameter regionselect_param = 156;	//geyijun@20161215加入自己层的参数
+  optional AccuracyIOUParameter accuracy_iou_param = 157;	//geyijun@20161215加入自己层的参数
   optional InfogainLossParameter infogain_loss_param = 116;
   optional InnerProductParameter inner_product_param = 117;
   optional InputParameter input_param = 143;
@@ -811,6 +814,37 @@ message ImageDataParameter {
   optional bool mirror = 6 [default = false];
   optional string root_folder = 12 [default = ""];
 }
+
+//geyijun@20160721加入自己层的参数 
+//参考ImageDataParameter
+message MyDataParameter {
+  // Specify the data source.
+  optional string source = 1;
+  // Specify the batch size.
+  optional uint32 batch_size = 4 [default = 1];
+  // The rand_skip variable is for the data layer to skip a few data points
+  // to avoid all asynchronous sgd clients to start at the same point. The skip
+  // point would be set as rand_skip * rand(0,1). Note that rand_skip should not
+  // be larger than the number of keys in the database.
+  optional uint32 rand_skip = 7 [default = 0];
+  // Whether or not ImageLayer should shuffle the list of files at every epoch.
+  optional bool shuffle = 8 [default = false];
+  // Specify if the images are color or gray
+  optional bool is_color = 11 [default = true];
+  optional string root_folder = 12 [default = ""];
+  //输出标签的模式(0:label_map输出每一个像素点的分类;1:label_position 输出坐标;)
+  optional int32 lable_mode = 13 [default = 0];
+}
+//geyijun@20161214
+message RegionSelectParameter {
+  optional int32 area_min = 1 [default = 100];	//是相对当前分辨率下的像素点的个数
+  optional int32 area_max = 2 [default = 10000];	//
+  optional int32 max_count = 3 [default = 8];	//最大定位的对象的个数  
+}
+message AccuracyIOUParameter {
+  optional int32 iou_threshold = 1 [default = 50];	//IOU 门限值  
+}
+
 
 message InfogainLossParameter {
   // Specify the infogain matrix source.

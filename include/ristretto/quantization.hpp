@@ -6,6 +6,7 @@
 using caffe::string;
 using caffe::vector;
 using caffe::Net;
+using caffe::Blob;
 using caffe::NetParameter;
 
 /**
@@ -17,22 +18,28 @@ using caffe::NetParameter;
 class Quantization {
 public:
   explicit Quantization(string model, string weights, string model_quantized,
-      int iterations, double error_margin, string gpus,string quantize_cfg);
+      int iterations, double error_margin, string gpus,string quantize_cfg,
+      string debug_out_float,string debug_out_trim);
   void QuantizeNet();
 private:
   void CheckWritePermissions(const string path);
   void SetGpu();
 
+  
   //枚举出所有需要遍历的bw 组合
   vector<int> GetValidBw(string cur_name);
   vector<vector<int> > CombineBwCfg(vector<vector<int> > before_result, vector<int> cur_in);
   void ParseBwCfg();
 
+  //计算量化能量差
+  float Float2FixTruncate(float val,int bw,int fl,int is_sign);		
+  float CalcDataLoss(Blob<float>* blob,int bw,int fl,int is_sign);
+
   //根据一组bw配置,结合(最大值，最小值)，使用【局部最优】标准，决定该层的is_sign和fl参数。
   void CalcFlSign(const int iterations,Net<float>* caffe_net);
-  
+
   //计算一个批次的精度
-  void CalcBatchAccuracy(const int iterations,Net<float>* caffe_net, float* accuracy,const int score_number );
+  void CalcBatchAccuracy(const int iterations,Net<float>* caffe_net, float* accuracy,float* cur_accuracy,const int score_number );
 
   //修改网络量化参数
   void EditNetQuantizationParameter(NetParameter* param,
@@ -41,6 +48,7 @@ private:
 
   //比较两组配置的精度大小
   int CompareBwCfg(vector<int>& bwcfg1,vector<int>& bwcfg2);
+  void DumpAllBlobs2Txt(Net<float>* caffe_net,string dumpdir);
   
   //配置参数(用户输入的)
   string model_;
@@ -51,6 +59,10 @@ private:
   string gpus_;
   string quantize_cfg_;	//量化配置文件，用来指定每一层可用的bw 枚举值
 
+  //调试输出用
+  string debug_out_float_;
+  string debug_out_trim_;
+  
   //下面信息由bw.cfg 配置文件中获取到
   int cfg_conv_params_bw_; 	//用户配置的卷积层权重的位宽
   int cfg_ip_params_bw_;		//用户配置的全连接层权重的位宽
@@ -68,7 +80,7 @@ private:
   vector<int> calc_params_fl_;
  
   //在训练集上float  运算的统计结果，用户局部最优定标
-  vector<string> layer_names_;  //每一层的名字
+  vector<string> layer_names_;  //每一层的名字(注意和net中的有差别，net会多一些split层)
   
   //在检验集上float  运算的分数，作为全局评价的基准分
   float test_score_baseline_;	

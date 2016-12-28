@@ -1,0 +1,1 @@
+../build/tools/ristretto quantize -model ./mnist/lenet_train_test.prototxt -weights ./mnist/lenet_iter_10000.caffemodel -quantize_cfg ./mnist/bw.cfg -model_quantized ./mnist/qz/ -iterations 500 -error_margin 5 -gpu all -debug_out_float "./dumpout_base/" -debug_out_trim "./dumpout_trim/"

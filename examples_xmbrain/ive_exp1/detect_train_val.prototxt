@@ -1,0 +1,226 @@
+name: "detect_train_val"
+layer {
+  name: "mydata"
+  type: "MyData"
+  top: "data"
+  top: "label_map"
+  include {
+    phase: TRAIN
+  }
+  #训练集
+  my_data_param {
+    root_folder: "/workspace/plate_detect/data/"
+    source: "/workspace/plate_detect/data/_more_mark_20160719/imgcfglist.txt"
+    batch_size: 32
+    shuffle: true
+    is_color : true  #彩色
+    lable_mode : 0   #输出的是每一个像素点的分类   
+  }
+}
+layer {
+  name: "mydata"
+  type: "MyData"
+  top: "data"
+  top: "label_pos"
+  include {
+    phase: TEST
+  }
+  #测试集
+  my_data_param {
+    root_folder: "/workspace/plate_detect/data/"
+    source: "/workspace/plate_detect/data/mark_20160819/imgcfglist.txt"
+    #source: "/workspace/plate_detect/data/val/imgcfglist.txt"
+    batch_size: 1
+    shuffle: false   #测试集不需要重排序 
+    is_color : true  #彩色
+    lable_mode : 1   #输出的是输出坐标(8192x8192)
+  }
+}
+layer {
+  name: "conv1"
+  type: "Convolution"
+  bottom: "data"
+  top: "conv1"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  convolution_param {
+    num_output: 10
+    kernel_size: 5
+    stride: 1
+    pad: 2
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "relu1"
+  type: "ReLU"
+  bottom: "conv1"
+  top: "conv1"
+}
+layer {
+  name: "pool1"
+  type: "Pooling"
+  bottom: "conv1"
+  top: "pool1"
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 3
+  }
+}
+layer {
+  name: "conv2"
+  type: "Convolution"
+  bottom: "pool1"
+  top: "conv2"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  convolution_param {
+    num_output: 10
+    kernel_size: 5
+    stride: 1
+    pad: 2
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layer {
+  name: "relu2"
+  type: "ReLU"
+  bottom: "conv2"
+  top: "conv2"
+}
+layer {
+  name: "pool2"
+  type: "Pooling"
+  bottom: "conv2"
+  top: "pool2"
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 3
+  }
+}
+layer {
+  name: "conv3"
+  type: "Convolution"
+  bottom: "pool2"
+  top: "conv3"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  convolution_param {
+    num_output: 2       #两分类
+    kernel_size: 5
+    stride: 1
+    pad: 2
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+
+###########################################################
+layer {
+  name: "upscore"
+  type: "Deconvolution"
+  bottom: "conv3"
+  top: "upscore"
+  param {
+    lr_mult: 0
+  }
+  convolution_param {
+    num_output: 2
+    bias_term: false
+    kernel_size: 18
+    stride: 9
+  }
+}
+layer {
+#当前使用久版本CAFFE中crop默认是居中裁剪，所以没有关系
+#新版本中crop则是需要配置裁剪的参数(默认是左上裁剪)，所以要注意
+  type: "Crop"
+  name: "target"
+  top: "target"
+  bottom: "upscore" 
+  bottom: "data"
+  crop_param {
+    offset: 4
+    offset: 7
+  }
+}
+#---------训练---------
+layer {
+  type: "BiasSoftmaxWithLoss"
+  name: "loss"
+  top: "loss"
+  bottom: "target"
+  bottom: "label_map"
+  include {
+    phase: TRAIN
+  }  
+  loss_param {
+    normalize: true
+  }
+}
+#---------检验---------
+layer {
+  type: "Softmax"
+  name: "score1"
+  top: "score1"
+  bottom: "target"
+  include {
+    phase: TEST
+  }
+}
+layer {
+  name: "region_pos"
+  type: "RegionSelect"
+  bottom: "score1"
+  top: "region_pos"     #挑选出来的区域的位置
+  include {
+    phase: TEST
+  }
+  regionselect_param {
+    area_min:3300       #是相对当前分辨率下的像素点的个数
+    area_max:30000      #最小100x33,最大300x100
+    max_count:32        #最多定位的对象的个数
+  }
+}
+layer {
+  name: "accuracy_iou"
+  type: "AccuracyIOU"
+  bottom: "label_pos"
+  bottom: "region_pos"
+  top: "accuracy_iou"   #计算准确率
+  include {
+    phase: TEST
+  }
+  accuracy_iou_param {
+    iou_threshold:50    #IOU 门限值
+  }
+}
+

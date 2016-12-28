@@ -19,17 +19,19 @@ template <typename Dtype>
 void DeconvolutionRistrettoLayer<Dtype>::Forward_cpu(
       const vector<Blob<Dtype>*>& bottom, const vector<Blob<Dtype>*>& top) 
 {
-	//对权值参数进行量化
-	this->QuantizeWeights_cpu(this->blobs_, this->bias_term_);
 	//调用父类的前向运算
-	DeconvolutionLayer<Dtype>::Forward_cpu(bottom,top);
+	//DeconvolutionLayer<Dtype>::Forward_cpu(bottom,top);
+	DeconvolutionLayer<Dtype>::Forward_gpu(bottom,top);
 	//对结果进行量化输出
 	this->QuantizeLayerOutputs_cpu(top[0]->mutable_cpu_data(), top[0]->count());
 }
 
-#ifdef CPU_ONLY
-STUB_GPU(DeconvolutionRistrettoLayer);
-#endif
+template <typename Dtype>
+void DeconvolutionRistrettoLayer<Dtype>::Forward_gpu(
+	const vector<Blob<Dtype>*>& bottom, const vector<Blob<Dtype>*>& top) 
+{
+	return Forward_cpu(bottom, top);
+}
 
 INSTANTIATE_CLASS(DeconvolutionRistrettoLayer);
 REGISTER_LAYER_CLASS(DeconvolutionRistretto);

@@ -22,15 +22,19 @@ void LRNRistrettoLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
       const vector<Blob<Dtype>*>& top) 
 {
 	//调用父类的前向运算
-	LRNLayer<Dtype>::Forward_cpu(bottom,top);
+	//LRNLayer<Dtype>::Forward_cpu(bottom,top);
+	LRNLayer<Dtype>::Forward_gpu(bottom,top);
 	//对结果进行量化输出
 	this->QuantizeLayerOutputs_cpu(top[0]->mutable_cpu_data(), top[0]->count());
 }
 
-#ifdef CPU_ONLY
-STUB_GPU(LRNRistrettoLayer);
-STUB_GPU_FORWARD(LRNRistrettoLayer, CrossChannelForward);
-#endif
+template <typename Dtype>
+void LRNRistrettoLayer<Dtype>::Forward_gpu(
+	const vector<Blob<Dtype>*>& bottom, const vector<Blob<Dtype>*>& top) 
+{
+	return Forward_cpu(bottom, top);
+}
+
 
 INSTANTIATE_CLASS(LRNRistrettoLayer);
 REGISTER_LAYER_CLASS(LRNRistretto);

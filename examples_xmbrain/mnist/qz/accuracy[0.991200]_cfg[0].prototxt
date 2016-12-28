@@ -1,0 +1,241 @@
+name: "LeNet"
+state {
+  phase: TEST
+}
+layer {
+  name: "mnist"
+  type: "Data"
+  top: "data"
+  top: "label"
+  include {
+    phase: TRAIN
+  }
+  transform_param {
+    scale: 0.00390625
+  }
+  data_param {
+    source: "./mnist/mnist_train_lmdb"
+    batch_size: 64
+    backend: LMDB
+  }
+}
+layer {
+  name: "mnist"
+  type: "DataRistretto"
+  top: "data"
+  top: "label"
+  include {
+    phase: TEST
+  }
+  transform_param {
+    scale: 0.00390625
+  }
+  data_param {
+    source: "./mnist/mnist_test_lmdb"
+    batch_size: 100
+    backend: LMDB
+  }
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "conv1"
+  type: "ConvolutionRistretto"
+  bottom: "data"
+  top: "conv1"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  convolution_param {
+    num_output: 20
+    kernel_size: 5
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 7
+    bw_layer_data: 8
+    fl_layer_data: 5
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "pool1"
+  type: "PoolingRistretto"
+  bottom: "conv1"
+  top: "pool1"
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 5
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "conv2"
+  type: "ConvolutionRistretto"
+  bottom: "pool1"
+  top: "conv2"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  convolution_param {
+    num_output: 50
+    kernel_size: 5
+    stride: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 9
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "pool2"
+  type: "PoolingRistretto"
+  bottom: "conv2"
+  top: "pool2"
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "ip1"
+  type: "InnerProductRistretto"
+  bottom: "pool2"
+  top: "ip1"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  inner_product_param {
+    num_output: 500
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 10
+    bw_layer_data: 8
+    fl_layer_data: 4
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "relu1"
+  type: "ReLURistretto"
+  bottom: "ip1"
+  top: "ip1"
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 4
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "ip2"
+  type: "InnerProductRistretto"
+  bottom: "ip1"
+  top: "ip2"
+  param {
+    lr_mult: 1
+  }
+  param {
+    lr_mult: 2
+  }
+  inner_product_param {
+    num_output: 10
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 8
+    bw_layer_data: 8
+    fl_layer_data: 2
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "accuracy"
+  type: "Accuracy"
+  bottom: "ip2"
+  bottom: "label"
+  top: "accuracy"
+  include {
+    phase: TEST
+  }
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "loss"
+  type: "SoftmaxWithLoss"
+  bottom: "ip2"
+  bottom: "label"
+  top: "loss"
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 11
+    is_sign_data: 0
+  }
+}

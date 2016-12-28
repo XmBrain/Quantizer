@@ -228,12 +228,9 @@ class Net {
       const string& layer_name);
 
   //geyijun @ 2016-12-12
-  void RangeInLayers(vector<Dtype>*max_params,vector<Dtype>* max_data,vector<Dtype>* min_data);
+  void RangeInLayers(vector<string>& layer_name,vector<Dtype>*max_params,vector<Dtype>* max_data,vector<Dtype>* min_data);
   Dtype findMax(Blob<Dtype>* blob);
   Dtype findMin(Blob<Dtype>* blob);
-  //计算量化能量差
-  float CalcDataLoss(int layer_id,int bw,int fl,int is_sign);
-  float Float2FixTruncate(Dtype val,int bw,int fl,int is_sign);
  protected:
   // Helpers for Init.
   /// @brief Append a new top blob to the net.

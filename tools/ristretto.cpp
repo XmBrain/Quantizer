@@ -37,6 +37,10 @@ DEFINE_int32(iterations, 50,
     "Optional: The number of iterations to run.");
 DEFINE_double(error_margin, 2,
     "Optional: the allowed accuracy drop in %");
+DEFINE_string(debug_out_float, "",
+    "The output path of the float data");
+DEFINE_string(debug_out_trim, "",
+    "The output path of the trim data");
 
 // A simple registry for caffe commands.
 typedef int (*BrewFunction)();
@@ -83,7 +87,8 @@ int quantize(){
   CHECK_GT(FLAGS_quantize_cfg.size(), 0) << "Need quantize_cfg .";
   Quantization* q = new Quantization(FLAGS_model, FLAGS_weights,
       FLAGS_model_quantized, FLAGS_iterations,
-      FLAGS_error_margin, FLAGS_gpu,FLAGS_quantize_cfg);
+      FLAGS_error_margin, FLAGS_gpu,FLAGS_quantize_cfg,
+      FLAGS_debug_out_float,FLAGS_debug_out_trim);
   q->QuantizeNet();
   delete q;
   return 0;
@@ -99,7 +104,7 @@ int main(int argc, char** argv) {
   gflags::SetUsageMessage("command line brew\n"
       "usage: ristretto <command> <args>\n\n"
       "commands:\n"
-      "  quantize        Trim 32bit floating point net\n");
+      "	  quantize        Trim 32bit floating point net\n");
   // Run tool or show usage.
   caffe::GlobalInit(&argc, &argv);
   if (argc == 2) {
@@ -108,3 +113,4 @@ int main(int argc, char** argv) {
       gflags::ShowUsageWithFlagsRestrict(argv[0], "tools/ristretto");
   }
 }
+

@@ -67,6 +67,14 @@ set(Caffe_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
 include_directories(${Caffe_INCLUDE_DIR} ${PROJECT_BINARY_DIR})
 include_directories(BEFORE src) # This is needed for gtest.
 
+#geyijun@20161224
+include_directories(../ComLibs/_include/)
+include_directories(../lib_region_select/)
+link_directories(../ComLibs/_libs/)
+link_directories(../lib_region_select/)
+link_libraries(json)
+link_libraries(region_select)
+
 # ---[ Subdirectories
 add_subdirectory(src/gtest)
 add_subdirectory(src/caffe)
