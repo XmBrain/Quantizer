@@ -1,7 +1,39 @@
-量化工具:
+第一步:
+对于一个caffe训练好的模型 ，使用量化工具
 可以给出网络的不同量化的输出结果和初步评价。
+量化的结果输出到qz目录下。
 
-valid.py
+第二步:
+到qz目录下，去挑选一个量化后的网络文件。是可以使用valid.py
 可以详细的评估各个量化后的网络的精度报告。
+
+第三步:
+如果选定qz目录的某一个量化文件后，需要手动把量化参数同步到deploy.prototxt
+中，即产生一个deploy_qz.prototxt的测试网络。
+
+第四步:
+使用NetworkGenerator工具，结合deploy_qz.prototxt，对网络进行转化。
+产生我们仿真软件可以接受的数据格式。
+
+第五步:
+使用仿真软件去运行数据文件，dump数据结果和第六步的结果进行比较。
+输入数据可以使用脚本进行创建。脚本在下面的位置上。
+D:\DL_Workspace\XmCnnJpg2Data
+或者当前目录下
+或者\\10.2.12.99\geyijun\AI_Workspace\my_mean_process
+
+第六步:(可选,调试用)
+再创建detect_deploy_qz_verify.prototxt,就是从deploy_qz.prototxt中的层类型改成_ristretto
+使用dump_data.py运行，然后dump处各层的中间结果。
+
+例如:::
+./dump_data.py ./ive_exp1/ttt.jpg ./ive_exp1/detect_deploy_qz_verify.prototxt  ./ive_exp1/_iter_10000.caffemodel ./ive_exp1/dump_verify/
+./dump_data.py ./ive_expNewA/ttt.jpg ./ive_expNewA/detect_deploy_qz_verify.prototxt  ./ive_expNewA/_iter_100000.caffemodel ./ive_expNewA/dump_verify/
+
+
+注意:在创建数据的时候，因为linux下的opencv 和 windows下不一致，会导致解码的jpeg文件的值存在差异。
+所以如果为了对比数据，那么最好都统一到linux去产生输入数据。
+转换文件:::convert_jpg_dat_and_bgr.py,就在这个目录下、caffe_ristretto目录下
+
 
 

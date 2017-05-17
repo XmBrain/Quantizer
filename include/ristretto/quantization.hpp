@@ -21,6 +21,13 @@ public:
       int iterations, double error_margin, string gpus,string quantize_cfg,
       string debug_out_float,string debug_out_trim);
   void QuantizeNet();
+  //修改网络量化参数
+  static void EditNetQuantizationParameter(NetParameter* param,
+					  				vector<string> layer_names,
+									vector<int> params_bw,vector<int> params_fl,
+									vector<int> data_bw,vector<int> data_fl,
+									vector<int> data_sign);
+  
 private:
   void CheckWritePermissions(const string path);
   void SetGpu();
@@ -37,14 +44,10 @@ private:
 
   //根据一组bw配置,结合(最大值，最小值)，使用【局部最优】标准，决定该层的is_sign和fl参数。
   void CalcFlSign(const int iterations,Net<float>* caffe_net);
-
+  void CalcFlSign_ForLSTM(Net<float>* caffe_net);
+  
   //计算一个批次的精度
   void CalcBatchAccuracy(const int iterations,Net<float>* caffe_net, float* accuracy,float* cur_accuracy,const int score_number );
-
-  //修改网络量化参数
-  void EditNetQuantizationParameter(NetParameter* param,
-				vector<int> params_bw,vector<int> params_fl,
-				vector<int> data_bw,vector<int> data_fl,vector<int> data_sign);
 
   //比较两组配置的精度大小
   int CompareBwCfg(vector<int>& bwcfg1,vector<int>& bwcfg2);
@@ -53,7 +56,7 @@ private:
   //配置参数(用户输入的)
   string model_;
   string weights_;
-  string model_quantized_;
+  static string model_quantized_;
   int iterations_;
   double error_margin_;
   string gpus_;

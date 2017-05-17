@@ -20,6 +20,7 @@
 #include "caffe/util/insert_splits.hpp"
 #include "caffe/util/math_functions.hpp"
 #include "caffe/util/upgrade_proto.hpp"
+#include "caffe/layers/lstm_layer.hpp"
 
 #include "caffe/test/test_caffe_main.hpp"
 
@@ -396,7 +397,7 @@ Dtype Net<Dtype>::findMin(Blob<Dtype>* blob) {
 }
 
 //geyijun@2016-12-10
-//ͳ���ض���Ĳ��������ݷ�Χ
+//统计特定层的参数和数据范围
 template <typename Dtype>
 void Net<Dtype>::RangeInLayers(vector<string>& layer_name,vector<Dtype>*max_params,vector<Dtype>* max_data,vector<Dtype>* min_data)
 {
@@ -408,7 +409,7 @@ void Net<Dtype>::RangeInLayers(vector<string>& layer_name,vector<Dtype>*max_para
 	{
 		string name = this->layer_names()[layer_id];
 		vector<string>::iterator found_iter = find(layer_name.begin( ), layer_name.end( ),name); 
-    		if ( found_iter == layer_name.end( ) ) //û�ҵ�
+    		if ( found_iter == layer_name.end( ) ) //没找到
     		{
     			continue;
     		}
@@ -416,6 +417,19 @@ void Net<Dtype>::RangeInLayers(vector<string>& layer_name,vector<Dtype>*max_para
 		max_data->at(index) = std::max(max_data->at(index), tmp_val);
 		tmp_val = findMin(top_vecs_[layer_id][0]);
 		min_data->at(index) = std::min(min_data->at(index), tmp_val);
+		//统计一层的数据范围，通常只需要统计top[0] 就可以了
+		//但是下面这种不行，需要统计所有的top[]
+		if (strcmp(layers_[layer_id]->type(), "Slice") == 0 )
+		{
+			for(int i=1;i<top_vecs_[layer_id].size();i++)
+			{
+				tmp_val = findMax(top_vecs_[layer_id][i]);
+				max_data->at(index) = std::max(max_data->at(index), tmp_val);
+				tmp_val = findMin(top_vecs_[layer_id][i]);
+				min_data->at(index) = std::min(min_data->at(index), tmp_val);
+			}
+		}
+		
 		if (strcmp(layers_[layer_id]->type(), "Convolution") == 0 
 		||strcmp(layers_[layer_id]->type(), "InnerProduct") == 0) 
 		{
@@ -425,6 +439,14 @@ void Net<Dtype>::RangeInLayers(vector<string>& layer_name,vector<Dtype>*max_para
 		else
 		{
 			max_params	->at(index) = 0;
+		}
+		//geyijun@2017-05-11
+		//LSTM层还需要深入内部进行分析
+		//分析内部展开的每一层的数据范围
+		if (strcmp(layers_[layer_id]->type(), "LSTM") == 0) 
+		{
+			//统计内部展开网络的各个层的数据范围
+			((LSTMLayer<Dtype> *)layers_[layer_id].get())->RangeInUnrolledNet();
 		}
 		index++;
 	}
@@ -912,6 +934,16 @@ void Net<Dtype>::ToProto(NetParameter* param, bool write_diff) const {
   for (int i = 0; i < layers_.size(); ++i) {
     LayerParameter* layer_param = param->add_layer();
     layers_[i]->ToProto(layer_param, write_diff);
+  }
+}
+
+template <typename Dtype>
+void Net<Dtype>::ToProtoNotBlobs(NetParameter* param, bool write_diff) const {
+  param->Clear();
+  param->set_name(name_);
+  for (int i = 0; i < layers_.size(); ++i) {
+    LayerParameter* layer_param = param->add_layer();
+    layer_param->CopyFrom(layers_[i]->layer_param());
   }
 }
 

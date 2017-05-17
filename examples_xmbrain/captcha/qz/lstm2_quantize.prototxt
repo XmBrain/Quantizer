@@ -1,0 +1,9027 @@
+name: ""
+layer {
+  name: "lstm2_Input_x"
+  type: "Input"
+  top: "x"
+  top: "cont"
+  phase: TEST
+  input_param {
+    shape {
+      dim: 80
+      dim: 512
+      dim: 100
+    }
+    shape {
+      dim: 80
+      dim: 512
+    }
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_Input_c0h0"
+  type: "Input"
+  top: "c_0"
+  top: "h_0"
+  phase: TEST
+  input_param {
+    shape {
+      dim: 1
+      dim: 512
+      dim: 100
+    }
+    shape {
+      dim: 1
+      dim: 512
+      dim: 100
+    }
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_cont_slice"
+  type: "SliceRistretto"
+  bottom: "cont"
+  top: "cont_1"
+  top: "cont_2"
+  top: "cont_3"
+  top: "cont_4"
+  top: "cont_5"
+  top: "cont_6"
+  top: "cont_7"
+  top: "cont_8"
+  top: "cont_9"
+  top: "cont_10"
+  top: "cont_11"
+  top: "cont_12"
+  top: "cont_13"
+  top: "cont_14"
+  top: "cont_15"
+  top: "cont_16"
+  top: "cont_17"
+  top: "cont_18"
+  top: "cont_19"
+  top: "cont_20"
+  top: "cont_21"
+  top: "cont_22"
+  top: "cont_23"
+  top: "cont_24"
+  top: "cont_25"
+  top: "cont_26"
+  top: "cont_27"
+  top: "cont_28"
+  top: "cont_29"
+  top: "cont_30"
+  top: "cont_31"
+  top: "cont_32"
+  top: "cont_33"
+  top: "cont_34"
+  top: "cont_35"
+  top: "cont_36"
+  top: "cont_37"
+  top: "cont_38"
+  top: "cont_39"
+  top: "cont_40"
+  top: "cont_41"
+  top: "cont_42"
+  top: "cont_43"
+  top: "cont_44"
+  top: "cont_45"
+  top: "cont_46"
+  top: "cont_47"
+  top: "cont_48"
+  top: "cont_49"
+  top: "cont_50"
+  top: "cont_51"
+  top: "cont_52"
+  top: "cont_53"
+  top: "cont_54"
+  top: "cont_55"
+  top: "cont_56"
+  top: "cont_57"
+  top: "cont_58"
+  top: "cont_59"
+  top: "cont_60"
+  top: "cont_61"
+  top: "cont_62"
+  top: "cont_63"
+  top: "cont_64"
+  top: "cont_65"
+  top: "cont_66"
+  top: "cont_67"
+  top: "cont_68"
+  top: "cont_69"
+  top: "cont_70"
+  top: "cont_71"
+  top: "cont_72"
+  top: "cont_73"
+  top: "cont_74"
+  top: "cont_75"
+  top: "cont_76"
+  top: "cont_77"
+  top: "cont_78"
+  top: "cont_79"
+  top: "cont_80"
+  phase: TEST
+  slice_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_1_lstm2_cont_slice_0_split"
+  type: "Split"
+  bottom: "cont_1"
+  top: "cont_1_lstm2_cont_slice_0_split_0"
+  top: "cont_1_lstm2_cont_slice_0_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_2_lstm2_cont_slice_1_split"
+  type: "Split"
+  bottom: "cont_2"
+  top: "cont_2_lstm2_cont_slice_1_split_0"
+  top: "cont_2_lstm2_cont_slice_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_3_lstm2_cont_slice_2_split"
+  type: "Split"
+  bottom: "cont_3"
+  top: "cont_3_lstm2_cont_slice_2_split_0"
+  top: "cont_3_lstm2_cont_slice_2_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_4_lstm2_cont_slice_3_split"
+  type: "Split"
+  bottom: "cont_4"
+  top: "cont_4_lstm2_cont_slice_3_split_0"
+  top: "cont_4_lstm2_cont_slice_3_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_5_lstm2_cont_slice_4_split"
+  type: "Split"
+  bottom: "cont_5"
+  top: "cont_5_lstm2_cont_slice_4_split_0"
+  top: "cont_5_lstm2_cont_slice_4_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_6_lstm2_cont_slice_5_split"
+  type: "Split"
+  bottom: "cont_6"
+  top: "cont_6_lstm2_cont_slice_5_split_0"
+  top: "cont_6_lstm2_cont_slice_5_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_7_lstm2_cont_slice_6_split"
+  type: "Split"
+  bottom: "cont_7"
+  top: "cont_7_lstm2_cont_slice_6_split_0"
+  top: "cont_7_lstm2_cont_slice_6_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_8_lstm2_cont_slice_7_split"
+  type: "Split"
+  bottom: "cont_8"
+  top: "cont_8_lstm2_cont_slice_7_split_0"
+  top: "cont_8_lstm2_cont_slice_7_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_9_lstm2_cont_slice_8_split"
+  type: "Split"
+  bottom: "cont_9"
+  top: "cont_9_lstm2_cont_slice_8_split_0"
+  top: "cont_9_lstm2_cont_slice_8_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_10_lstm2_cont_slice_9_split"
+  type: "Split"
+  bottom: "cont_10"
+  top: "cont_10_lstm2_cont_slice_9_split_0"
+  top: "cont_10_lstm2_cont_slice_9_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_11_lstm2_cont_slice_10_split"
+  type: "Split"
+  bottom: "cont_11"
+  top: "cont_11_lstm2_cont_slice_10_split_0"
+  top: "cont_11_lstm2_cont_slice_10_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_12_lstm2_cont_slice_11_split"
+  type: "Split"
+  bottom: "cont_12"
+  top: "cont_12_lstm2_cont_slice_11_split_0"
+  top: "cont_12_lstm2_cont_slice_11_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_13_lstm2_cont_slice_12_split"
+  type: "Split"
+  bottom: "cont_13"
+  top: "cont_13_lstm2_cont_slice_12_split_0"
+  top: "cont_13_lstm2_cont_slice_12_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_14_lstm2_cont_slice_13_split"
+  type: "Split"
+  bottom: "cont_14"
+  top: "cont_14_lstm2_cont_slice_13_split_0"
+  top: "cont_14_lstm2_cont_slice_13_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_15_lstm2_cont_slice_14_split"
+  type: "Split"
+  bottom: "cont_15"
+  top: "cont_15_lstm2_cont_slice_14_split_0"
+  top: "cont_15_lstm2_cont_slice_14_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_16_lstm2_cont_slice_15_split"
+  type: "Split"
+  bottom: "cont_16"
+  top: "cont_16_lstm2_cont_slice_15_split_0"
+  top: "cont_16_lstm2_cont_slice_15_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_17_lstm2_cont_slice_16_split"
+  type: "Split"
+  bottom: "cont_17"
+  top: "cont_17_lstm2_cont_slice_16_split_0"
+  top: "cont_17_lstm2_cont_slice_16_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_18_lstm2_cont_slice_17_split"
+  type: "Split"
+  bottom: "cont_18"
+  top: "cont_18_lstm2_cont_slice_17_split_0"
+  top: "cont_18_lstm2_cont_slice_17_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_19_lstm2_cont_slice_18_split"
+  type: "Split"
+  bottom: "cont_19"
+  top: "cont_19_lstm2_cont_slice_18_split_0"
+  top: "cont_19_lstm2_cont_slice_18_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_20_lstm2_cont_slice_19_split"
+  type: "Split"
+  bottom: "cont_20"
+  top: "cont_20_lstm2_cont_slice_19_split_0"
+  top: "cont_20_lstm2_cont_slice_19_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_21_lstm2_cont_slice_20_split"
+  type: "Split"
+  bottom: "cont_21"
+  top: "cont_21_lstm2_cont_slice_20_split_0"
+  top: "cont_21_lstm2_cont_slice_20_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_22_lstm2_cont_slice_21_split"
+  type: "Split"
+  bottom: "cont_22"
+  top: "cont_22_lstm2_cont_slice_21_split_0"
+  top: "cont_22_lstm2_cont_slice_21_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_23_lstm2_cont_slice_22_split"
+  type: "Split"
+  bottom: "cont_23"
+  top: "cont_23_lstm2_cont_slice_22_split_0"
+  top: "cont_23_lstm2_cont_slice_22_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_24_lstm2_cont_slice_23_split"
+  type: "Split"
+  bottom: "cont_24"
+  top: "cont_24_lstm2_cont_slice_23_split_0"
+  top: "cont_24_lstm2_cont_slice_23_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_25_lstm2_cont_slice_24_split"
+  type: "Split"
+  bottom: "cont_25"
+  top: "cont_25_lstm2_cont_slice_24_split_0"
+  top: "cont_25_lstm2_cont_slice_24_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_26_lstm2_cont_slice_25_split"
+  type: "Split"
+  bottom: "cont_26"
+  top: "cont_26_lstm2_cont_slice_25_split_0"
+  top: "cont_26_lstm2_cont_slice_25_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_27_lstm2_cont_slice_26_split"
+  type: "Split"
+  bottom: "cont_27"
+  top: "cont_27_lstm2_cont_slice_26_split_0"
+  top: "cont_27_lstm2_cont_slice_26_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_28_lstm2_cont_slice_27_split"
+  type: "Split"
+  bottom: "cont_28"
+  top: "cont_28_lstm2_cont_slice_27_split_0"
+  top: "cont_28_lstm2_cont_slice_27_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_29_lstm2_cont_slice_28_split"
+  type: "Split"
+  bottom: "cont_29"
+  top: "cont_29_lstm2_cont_slice_28_split_0"
+  top: "cont_29_lstm2_cont_slice_28_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_30_lstm2_cont_slice_29_split"
+  type: "Split"
+  bottom: "cont_30"
+  top: "cont_30_lstm2_cont_slice_29_split_0"
+  top: "cont_30_lstm2_cont_slice_29_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_31_lstm2_cont_slice_30_split"
+  type: "Split"
+  bottom: "cont_31"
+  top: "cont_31_lstm2_cont_slice_30_split_0"
+  top: "cont_31_lstm2_cont_slice_30_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_32_lstm2_cont_slice_31_split"
+  type: "Split"
+  bottom: "cont_32"
+  top: "cont_32_lstm2_cont_slice_31_split_0"
+  top: "cont_32_lstm2_cont_slice_31_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_33_lstm2_cont_slice_32_split"
+  type: "Split"
+  bottom: "cont_33"
+  top: "cont_33_lstm2_cont_slice_32_split_0"
+  top: "cont_33_lstm2_cont_slice_32_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_34_lstm2_cont_slice_33_split"
+  type: "Split"
+  bottom: "cont_34"
+  top: "cont_34_lstm2_cont_slice_33_split_0"
+  top: "cont_34_lstm2_cont_slice_33_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_35_lstm2_cont_slice_34_split"
+  type: "Split"
+  bottom: "cont_35"
+  top: "cont_35_lstm2_cont_slice_34_split_0"
+  top: "cont_35_lstm2_cont_slice_34_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_36_lstm2_cont_slice_35_split"
+  type: "Split"
+  bottom: "cont_36"
+  top: "cont_36_lstm2_cont_slice_35_split_0"
+  top: "cont_36_lstm2_cont_slice_35_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_37_lstm2_cont_slice_36_split"
+  type: "Split"
+  bottom: "cont_37"
+  top: "cont_37_lstm2_cont_slice_36_split_0"
+  top: "cont_37_lstm2_cont_slice_36_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_38_lstm2_cont_slice_37_split"
+  type: "Split"
+  bottom: "cont_38"
+  top: "cont_38_lstm2_cont_slice_37_split_0"
+  top: "cont_38_lstm2_cont_slice_37_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_39_lstm2_cont_slice_38_split"
+  type: "Split"
+  bottom: "cont_39"
+  top: "cont_39_lstm2_cont_slice_38_split_0"
+  top: "cont_39_lstm2_cont_slice_38_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_40_lstm2_cont_slice_39_split"
+  type: "Split"
+  bottom: "cont_40"
+  top: "cont_40_lstm2_cont_slice_39_split_0"
+  top: "cont_40_lstm2_cont_slice_39_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_41_lstm2_cont_slice_40_split"
+  type: "Split"
+  bottom: "cont_41"
+  top: "cont_41_lstm2_cont_slice_40_split_0"
+  top: "cont_41_lstm2_cont_slice_40_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_42_lstm2_cont_slice_41_split"
+  type: "Split"
+  bottom: "cont_42"
+  top: "cont_42_lstm2_cont_slice_41_split_0"
+  top: "cont_42_lstm2_cont_slice_41_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_43_lstm2_cont_slice_42_split"
+  type: "Split"
+  bottom: "cont_43"
+  top: "cont_43_lstm2_cont_slice_42_split_0"
+  top: "cont_43_lstm2_cont_slice_42_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_44_lstm2_cont_slice_43_split"
+  type: "Split"
+  bottom: "cont_44"
+  top: "cont_44_lstm2_cont_slice_43_split_0"
+  top: "cont_44_lstm2_cont_slice_43_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_45_lstm2_cont_slice_44_split"
+  type: "Split"
+  bottom: "cont_45"
+  top: "cont_45_lstm2_cont_slice_44_split_0"
+  top: "cont_45_lstm2_cont_slice_44_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_46_lstm2_cont_slice_45_split"
+  type: "Split"
+  bottom: "cont_46"
+  top: "cont_46_lstm2_cont_slice_45_split_0"
+  top: "cont_46_lstm2_cont_slice_45_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_47_lstm2_cont_slice_46_split"
+  type: "Split"
+  bottom: "cont_47"
+  top: "cont_47_lstm2_cont_slice_46_split_0"
+  top: "cont_47_lstm2_cont_slice_46_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_48_lstm2_cont_slice_47_split"
+  type: "Split"
+  bottom: "cont_48"
+  top: "cont_48_lstm2_cont_slice_47_split_0"
+  top: "cont_48_lstm2_cont_slice_47_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_49_lstm2_cont_slice_48_split"
+  type: "Split"
+  bottom: "cont_49"
+  top: "cont_49_lstm2_cont_slice_48_split_0"
+  top: "cont_49_lstm2_cont_slice_48_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_50_lstm2_cont_slice_49_split"
+  type: "Split"
+  bottom: "cont_50"
+  top: "cont_50_lstm2_cont_slice_49_split_0"
+  top: "cont_50_lstm2_cont_slice_49_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_51_lstm2_cont_slice_50_split"
+  type: "Split"
+  bottom: "cont_51"
+  top: "cont_51_lstm2_cont_slice_50_split_0"
+  top: "cont_51_lstm2_cont_slice_50_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_52_lstm2_cont_slice_51_split"
+  type: "Split"
+  bottom: "cont_52"
+  top: "cont_52_lstm2_cont_slice_51_split_0"
+  top: "cont_52_lstm2_cont_slice_51_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_53_lstm2_cont_slice_52_split"
+  type: "Split"
+  bottom: "cont_53"
+  top: "cont_53_lstm2_cont_slice_52_split_0"
+  top: "cont_53_lstm2_cont_slice_52_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_54_lstm2_cont_slice_53_split"
+  type: "Split"
+  bottom: "cont_54"
+  top: "cont_54_lstm2_cont_slice_53_split_0"
+  top: "cont_54_lstm2_cont_slice_53_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_55_lstm2_cont_slice_54_split"
+  type: "Split"
+  bottom: "cont_55"
+  top: "cont_55_lstm2_cont_slice_54_split_0"
+  top: "cont_55_lstm2_cont_slice_54_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_56_lstm2_cont_slice_55_split"
+  type: "Split"
+  bottom: "cont_56"
+  top: "cont_56_lstm2_cont_slice_55_split_0"
+  top: "cont_56_lstm2_cont_slice_55_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_57_lstm2_cont_slice_56_split"
+  type: "Split"
+  bottom: "cont_57"
+  top: "cont_57_lstm2_cont_slice_56_split_0"
+  top: "cont_57_lstm2_cont_slice_56_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_58_lstm2_cont_slice_57_split"
+  type: "Split"
+  bottom: "cont_58"
+  top: "cont_58_lstm2_cont_slice_57_split_0"
+  top: "cont_58_lstm2_cont_slice_57_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_59_lstm2_cont_slice_58_split"
+  type: "Split"
+  bottom: "cont_59"
+  top: "cont_59_lstm2_cont_slice_58_split_0"
+  top: "cont_59_lstm2_cont_slice_58_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_60_lstm2_cont_slice_59_split"
+  type: "Split"
+  bottom: "cont_60"
+  top: "cont_60_lstm2_cont_slice_59_split_0"
+  top: "cont_60_lstm2_cont_slice_59_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_61_lstm2_cont_slice_60_split"
+  type: "Split"
+  bottom: "cont_61"
+  top: "cont_61_lstm2_cont_slice_60_split_0"
+  top: "cont_61_lstm2_cont_slice_60_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_62_lstm2_cont_slice_61_split"
+  type: "Split"
+  bottom: "cont_62"
+  top: "cont_62_lstm2_cont_slice_61_split_0"
+  top: "cont_62_lstm2_cont_slice_61_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_63_lstm2_cont_slice_62_split"
+  type: "Split"
+  bottom: "cont_63"
+  top: "cont_63_lstm2_cont_slice_62_split_0"
+  top: "cont_63_lstm2_cont_slice_62_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_64_lstm2_cont_slice_63_split"
+  type: "Split"
+  bottom: "cont_64"
+  top: "cont_64_lstm2_cont_slice_63_split_0"
+  top: "cont_64_lstm2_cont_slice_63_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_65_lstm2_cont_slice_64_split"
+  type: "Split"
+  bottom: "cont_65"
+  top: "cont_65_lstm2_cont_slice_64_split_0"
+  top: "cont_65_lstm2_cont_slice_64_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_66_lstm2_cont_slice_65_split"
+  type: "Split"
+  bottom: "cont_66"
+  top: "cont_66_lstm2_cont_slice_65_split_0"
+  top: "cont_66_lstm2_cont_slice_65_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_67_lstm2_cont_slice_66_split"
+  type: "Split"
+  bottom: "cont_67"
+  top: "cont_67_lstm2_cont_slice_66_split_0"
+  top: "cont_67_lstm2_cont_slice_66_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_68_lstm2_cont_slice_67_split"
+  type: "Split"
+  bottom: "cont_68"
+  top: "cont_68_lstm2_cont_slice_67_split_0"
+  top: "cont_68_lstm2_cont_slice_67_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_69_lstm2_cont_slice_68_split"
+  type: "Split"
+  bottom: "cont_69"
+  top: "cont_69_lstm2_cont_slice_68_split_0"
+  top: "cont_69_lstm2_cont_slice_68_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_70_lstm2_cont_slice_69_split"
+  type: "Split"
+  bottom: "cont_70"
+  top: "cont_70_lstm2_cont_slice_69_split_0"
+  top: "cont_70_lstm2_cont_slice_69_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_71_lstm2_cont_slice_70_split"
+  type: "Split"
+  bottom: "cont_71"
+  top: "cont_71_lstm2_cont_slice_70_split_0"
+  top: "cont_71_lstm2_cont_slice_70_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_72_lstm2_cont_slice_71_split"
+  type: "Split"
+  bottom: "cont_72"
+  top: "cont_72_lstm2_cont_slice_71_split_0"
+  top: "cont_72_lstm2_cont_slice_71_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_73_lstm2_cont_slice_72_split"
+  type: "Split"
+  bottom: "cont_73"
+  top: "cont_73_lstm2_cont_slice_72_split_0"
+  top: "cont_73_lstm2_cont_slice_72_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_74_lstm2_cont_slice_73_split"
+  type: "Split"
+  bottom: "cont_74"
+  top: "cont_74_lstm2_cont_slice_73_split_0"
+  top: "cont_74_lstm2_cont_slice_73_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_75_lstm2_cont_slice_74_split"
+  type: "Split"
+  bottom: "cont_75"
+  top: "cont_75_lstm2_cont_slice_74_split_0"
+  top: "cont_75_lstm2_cont_slice_74_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_76_lstm2_cont_slice_75_split"
+  type: "Split"
+  bottom: "cont_76"
+  top: "cont_76_lstm2_cont_slice_75_split_0"
+  top: "cont_76_lstm2_cont_slice_75_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_77_lstm2_cont_slice_76_split"
+  type: "Split"
+  bottom: "cont_77"
+  top: "cont_77_lstm2_cont_slice_76_split_0"
+  top: "cont_77_lstm2_cont_slice_76_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_78_lstm2_cont_slice_77_split"
+  type: "Split"
+  bottom: "cont_78"
+  top: "cont_78_lstm2_cont_slice_77_split_0"
+  top: "cont_78_lstm2_cont_slice_77_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_79_lstm2_cont_slice_78_split"
+  type: "Split"
+  bottom: "cont_79"
+  top: "cont_79_lstm2_cont_slice_78_split_0"
+  top: "cont_79_lstm2_cont_slice_78_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "cont_80_lstm2_cont_slice_79_split"
+  type: "Split"
+  bottom: "cont_80"
+  top: "cont_80_lstm2_cont_slice_79_split_0"
+  top: "cont_80_lstm2_cont_slice_79_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "lstm2_x_transform"
+  type: "InnerProductRistretto"
+  bottom: "x"
+  top: "W_xc_x"
+  param {
+    name: "W_xc"
+  }
+  param {
+    name: "b_c"
+  }
+  phase: TEST
+  propagate_down: true
+  inner_product_param {
+    num_output: 400
+    bias_term: true
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_W_xc_x_slice"
+  type: "SliceRistretto"
+  bottom: "W_xc_x"
+  top: "W_xc_x_1"
+  top: "W_xc_x_2"
+  top: "W_xc_x_3"
+  top: "W_xc_x_4"
+  top: "W_xc_x_5"
+  top: "W_xc_x_6"
+  top: "W_xc_x_7"
+  top: "W_xc_x_8"
+  top: "W_xc_x_9"
+  top: "W_xc_x_10"
+  top: "W_xc_x_11"
+  top: "W_xc_x_12"
+  top: "W_xc_x_13"
+  top: "W_xc_x_14"
+  top: "W_xc_x_15"
+  top: "W_xc_x_16"
+  top: "W_xc_x_17"
+  top: "W_xc_x_18"
+  top: "W_xc_x_19"
+  top: "W_xc_x_20"
+  top: "W_xc_x_21"
+  top: "W_xc_x_22"
+  top: "W_xc_x_23"
+  top: "W_xc_x_24"
+  top: "W_xc_x_25"
+  top: "W_xc_x_26"
+  top: "W_xc_x_27"
+  top: "W_xc_x_28"
+  top: "W_xc_x_29"
+  top: "W_xc_x_30"
+  top: "W_xc_x_31"
+  top: "W_xc_x_32"
+  top: "W_xc_x_33"
+  top: "W_xc_x_34"
+  top: "W_xc_x_35"
+  top: "W_xc_x_36"
+  top: "W_xc_x_37"
+  top: "W_xc_x_38"
+  top: "W_xc_x_39"
+  top: "W_xc_x_40"
+  top: "W_xc_x_41"
+  top: "W_xc_x_42"
+  top: "W_xc_x_43"
+  top: "W_xc_x_44"
+  top: "W_xc_x_45"
+  top: "W_xc_x_46"
+  top: "W_xc_x_47"
+  top: "W_xc_x_48"
+  top: "W_xc_x_49"
+  top: "W_xc_x_50"
+  top: "W_xc_x_51"
+  top: "W_xc_x_52"
+  top: "W_xc_x_53"
+  top: "W_xc_x_54"
+  top: "W_xc_x_55"
+  top: "W_xc_x_56"
+  top: "W_xc_x_57"
+  top: "W_xc_x_58"
+  top: "W_xc_x_59"
+  top: "W_xc_x_60"
+  top: "W_xc_x_61"
+  top: "W_xc_x_62"
+  top: "W_xc_x_63"
+  top: "W_xc_x_64"
+  top: "W_xc_x_65"
+  top: "W_xc_x_66"
+  top: "W_xc_x_67"
+  top: "W_xc_x_68"
+  top: "W_xc_x_69"
+  top: "W_xc_x_70"
+  top: "W_xc_x_71"
+  top: "W_xc_x_72"
+  top: "W_xc_x_73"
+  top: "W_xc_x_74"
+  top: "W_xc_x_75"
+  top: "W_xc_x_76"
+  top: "W_xc_x_77"
+  top: "W_xc_x_78"
+  top: "W_xc_x_79"
+  top: "W_xc_x_80"
+  phase: TEST
+  slice_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_0"
+  type: "Scale"
+  bottom: "h_0"
+  bottom: "cont_1_lstm2_cont_slice_0_split_0"
+  top: "h_conted_0"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "lstm2_transform_1"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_0"
+  top: "W_hc_h_0"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "lstm2_gate_input_1"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_0"
+  bottom: "W_xc_x_1"
+  top: "gate_input_1"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 4
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_1"
+  type: "LSTMUnitRistretto"
+  bottom: "c_0"
+  bottom: "gate_input_1"
+  bottom: "cont_1_lstm2_cont_slice_0_split_1"
+  top: "c_1"
+  top: "h_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_1_lstm2_unit_1_1_split"
+  type: "Split"
+  bottom: "h_1"
+  top: "h_1_lstm2_unit_1_1_split_0"
+  top: "h_1_lstm2_unit_1_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_1"
+  type: "Scale"
+  bottom: "h_1_lstm2_unit_1_1_split_0"
+  bottom: "cont_2_lstm2_cont_slice_1_split_0"
+  top: "h_conted_1"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_2"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_1"
+  top: "W_hc_h_1"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 4
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_2"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_1"
+  bottom: "W_xc_x_2"
+  top: "gate_input_2"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 4
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_2"
+  type: "LSTMUnitRistretto"
+  bottom: "c_1"
+  bottom: "gate_input_2"
+  bottom: "cont_2_lstm2_cont_slice_1_split_1"
+  top: "c_2"
+  top: "h_2"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 6
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_2_lstm2_unit_2_1_split"
+  type: "Split"
+  bottom: "h_2"
+  top: "h_2_lstm2_unit_2_1_split_0"
+  top: "h_2_lstm2_unit_2_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_2"
+  type: "Scale"
+  bottom: "h_2_lstm2_unit_2_1_split_0"
+  bottom: "cont_3_lstm2_cont_slice_2_split_0"
+  top: "h_conted_2"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_3"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_2"
+  top: "W_hc_h_2"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 4
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_3"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_2"
+  bottom: "W_xc_x_3"
+  top: "gate_input_3"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_3"
+  type: "LSTMUnitRistretto"
+  bottom: "c_2"
+  bottom: "gate_input_3"
+  bottom: "cont_3_lstm2_cont_slice_2_split_1"
+  top: "c_3"
+  top: "h_3"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 6
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_3_lstm2_unit_3_1_split"
+  type: "Split"
+  bottom: "h_3"
+  top: "h_3_lstm2_unit_3_1_split_0"
+  top: "h_3_lstm2_unit_3_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_3"
+  type: "Scale"
+  bottom: "h_3_lstm2_unit_3_1_split_0"
+  bottom: "cont_4_lstm2_cont_slice_3_split_0"
+  top: "h_conted_3"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_4"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_3"
+  top: "W_hc_h_3"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 4
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_4"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_3"
+  bottom: "W_xc_x_4"
+  top: "gate_input_4"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_4"
+  type: "LSTMUnitRistretto"
+  bottom: "c_3"
+  bottom: "gate_input_4"
+  bottom: "cont_4_lstm2_cont_slice_3_split_1"
+  top: "c_4"
+  top: "h_4"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 5
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_4_lstm2_unit_4_1_split"
+  type: "Split"
+  bottom: "h_4"
+  top: "h_4_lstm2_unit_4_1_split_0"
+  top: "h_4_lstm2_unit_4_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_4"
+  type: "Scale"
+  bottom: "h_4_lstm2_unit_4_1_split_0"
+  bottom: "cont_5_lstm2_cont_slice_4_split_0"
+  top: "h_conted_4"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_5"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_4"
+  top: "W_hc_h_4"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 4
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_5"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_4"
+  bottom: "W_xc_x_5"
+  top: "gate_input_5"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_5"
+  type: "LSTMUnitRistretto"
+  bottom: "c_4"
+  bottom: "gate_input_5"
+  bottom: "cont_5_lstm2_cont_slice_4_split_1"
+  top: "c_5"
+  top: "h_5"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 5
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_5_lstm2_unit_5_1_split"
+  type: "Split"
+  bottom: "h_5"
+  top: "h_5_lstm2_unit_5_1_split_0"
+  top: "h_5_lstm2_unit_5_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_5"
+  type: "Scale"
+  bottom: "h_5_lstm2_unit_5_1_split_0"
+  bottom: "cont_6_lstm2_cont_slice_5_split_0"
+  top: "h_conted_5"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_6"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_5"
+  top: "W_hc_h_5"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_6"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_5"
+  bottom: "W_xc_x_6"
+  top: "gate_input_6"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_6"
+  type: "LSTMUnitRistretto"
+  bottom: "c_5"
+  bottom: "gate_input_6"
+  bottom: "cont_6_lstm2_cont_slice_5_split_1"
+  top: "c_6"
+  top: "h_6"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 5
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_6_lstm2_unit_6_1_split"
+  type: "Split"
+  bottom: "h_6"
+  top: "h_6_lstm2_unit_6_1_split_0"
+  top: "h_6_lstm2_unit_6_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_6"
+  type: "Scale"
+  bottom: "h_6_lstm2_unit_6_1_split_0"
+  bottom: "cont_7_lstm2_cont_slice_6_split_0"
+  top: "h_conted_6"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_7"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_6"
+  top: "W_hc_h_6"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_7"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_6"
+  bottom: "W_xc_x_7"
+  top: "gate_input_7"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_7"
+  type: "LSTMUnitRistretto"
+  bottom: "c_6"
+  bottom: "gate_input_7"
+  bottom: "cont_7_lstm2_cont_slice_6_split_1"
+  top: "c_7"
+  top: "h_7"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 5
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_7_lstm2_unit_7_1_split"
+  type: "Split"
+  bottom: "h_7"
+  top: "h_7_lstm2_unit_7_1_split_0"
+  top: "h_7_lstm2_unit_7_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_7"
+  type: "Scale"
+  bottom: "h_7_lstm2_unit_7_1_split_0"
+  bottom: "cont_8_lstm2_cont_slice_7_split_0"
+  top: "h_conted_7"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_8"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_7"
+  top: "W_hc_h_7"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_8"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_7"
+  bottom: "W_xc_x_8"
+  top: "gate_input_8"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_8"
+  type: "LSTMUnitRistretto"
+  bottom: "c_7"
+  bottom: "gate_input_8"
+  bottom: "cont_8_lstm2_cont_slice_7_split_1"
+  top: "c_8"
+  top: "h_8"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 4
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_8_lstm2_unit_8_1_split"
+  type: "Split"
+  bottom: "h_8"
+  top: "h_8_lstm2_unit_8_1_split_0"
+  top: "h_8_lstm2_unit_8_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_8"
+  type: "Scale"
+  bottom: "h_8_lstm2_unit_8_1_split_0"
+  bottom: "cont_9_lstm2_cont_slice_8_split_0"
+  top: "h_conted_8"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_9"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_8"
+  top: "W_hc_h_8"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_9"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_8"
+  bottom: "W_xc_x_9"
+  top: "gate_input_9"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_9"
+  type: "LSTMUnitRistretto"
+  bottom: "c_8"
+  bottom: "gate_input_9"
+  bottom: "cont_9_lstm2_cont_slice_8_split_1"
+  top: "c_9"
+  top: "h_9"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 4
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_9_lstm2_unit_9_1_split"
+  type: "Split"
+  bottom: "h_9"
+  top: "h_9_lstm2_unit_9_1_split_0"
+  top: "h_9_lstm2_unit_9_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_9"
+  type: "Scale"
+  bottom: "h_9_lstm2_unit_9_1_split_0"
+  bottom: "cont_10_lstm2_cont_slice_9_split_0"
+  top: "h_conted_9"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_10"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_9"
+  top: "W_hc_h_9"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_10"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_9"
+  bottom: "W_xc_x_10"
+  top: "gate_input_10"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_10"
+  type: "LSTMUnitRistretto"
+  bottom: "c_9"
+  bottom: "gate_input_10"
+  bottom: "cont_10_lstm2_cont_slice_9_split_1"
+  top: "c_10"
+  top: "h_10"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 4
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_10_lstm2_unit_10_1_split"
+  type: "Split"
+  bottom: "h_10"
+  top: "h_10_lstm2_unit_10_1_split_0"
+  top: "h_10_lstm2_unit_10_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_10"
+  type: "Scale"
+  bottom: "h_10_lstm2_unit_10_1_split_0"
+  bottom: "cont_11_lstm2_cont_slice_10_split_0"
+  top: "h_conted_10"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_11"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_10"
+  top: "W_hc_h_10"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_11"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_10"
+  bottom: "W_xc_x_11"
+  top: "gate_input_11"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_11"
+  type: "LSTMUnitRistretto"
+  bottom: "c_10"
+  bottom: "gate_input_11"
+  bottom: "cont_11_lstm2_cont_slice_10_split_1"
+  top: "c_11"
+  top: "h_11"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 4
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_11_lstm2_unit_11_1_split"
+  type: "Split"
+  bottom: "h_11"
+  top: "h_11_lstm2_unit_11_1_split_0"
+  top: "h_11_lstm2_unit_11_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_11"
+  type: "Scale"
+  bottom: "h_11_lstm2_unit_11_1_split_0"
+  bottom: "cont_12_lstm2_cont_slice_11_split_0"
+  top: "h_conted_11"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_12"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_11"
+  top: "W_hc_h_11"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_12"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_11"
+  bottom: "W_xc_x_12"
+  top: "gate_input_12"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_12"
+  type: "LSTMUnitRistretto"
+  bottom: "c_11"
+  bottom: "gate_input_12"
+  bottom: "cont_12_lstm2_cont_slice_11_split_1"
+  top: "c_12"
+  top: "h_12"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 4
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_12_lstm2_unit_12_1_split"
+  type: "Split"
+  bottom: "h_12"
+  top: "h_12_lstm2_unit_12_1_split_0"
+  top: "h_12_lstm2_unit_12_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_12"
+  type: "Scale"
+  bottom: "h_12_lstm2_unit_12_1_split_0"
+  bottom: "cont_13_lstm2_cont_slice_12_split_0"
+  top: "h_conted_12"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_13"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_12"
+  top: "W_hc_h_12"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_13"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_12"
+  bottom: "W_xc_x_13"
+  top: "gate_input_13"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_13"
+  type: "LSTMUnitRistretto"
+  bottom: "c_12"
+  bottom: "gate_input_13"
+  bottom: "cont_13_lstm2_cont_slice_12_split_1"
+  top: "c_13"
+  top: "h_13"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 4
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_13_lstm2_unit_13_1_split"
+  type: "Split"
+  bottom: "h_13"
+  top: "h_13_lstm2_unit_13_1_split_0"
+  top: "h_13_lstm2_unit_13_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_13"
+  type: "Scale"
+  bottom: "h_13_lstm2_unit_13_1_split_0"
+  bottom: "cont_14_lstm2_cont_slice_13_split_0"
+  top: "h_conted_13"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_14"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_13"
+  top: "W_hc_h_13"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_14"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_13"
+  bottom: "W_xc_x_14"
+  top: "gate_input_14"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_14"
+  type: "LSTMUnitRistretto"
+  bottom: "c_13"
+  bottom: "gate_input_14"
+  bottom: "cont_14_lstm2_cont_slice_13_split_1"
+  top: "c_14"
+  top: "h_14"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 4
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_14_lstm2_unit_14_1_split"
+  type: "Split"
+  bottom: "h_14"
+  top: "h_14_lstm2_unit_14_1_split_0"
+  top: "h_14_lstm2_unit_14_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_14"
+  type: "Scale"
+  bottom: "h_14_lstm2_unit_14_1_split_0"
+  bottom: "cont_15_lstm2_cont_slice_14_split_0"
+  top: "h_conted_14"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_15"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_14"
+  top: "W_hc_h_14"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_15"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_14"
+  bottom: "W_xc_x_15"
+  top: "gate_input_15"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_15"
+  type: "LSTMUnitRistretto"
+  bottom: "c_14"
+  bottom: "gate_input_15"
+  bottom: "cont_15_lstm2_cont_slice_14_split_1"
+  top: "c_15"
+  top: "h_15"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_15_lstm2_unit_15_1_split"
+  type: "Split"
+  bottom: "h_15"
+  top: "h_15_lstm2_unit_15_1_split_0"
+  top: "h_15_lstm2_unit_15_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_15"
+  type: "Scale"
+  bottom: "h_15_lstm2_unit_15_1_split_0"
+  bottom: "cont_16_lstm2_cont_slice_15_split_0"
+  top: "h_conted_15"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_16"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_15"
+  top: "W_hc_h_15"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_16"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_15"
+  bottom: "W_xc_x_16"
+  top: "gate_input_16"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_16"
+  type: "LSTMUnitRistretto"
+  bottom: "c_15"
+  bottom: "gate_input_16"
+  bottom: "cont_16_lstm2_cont_slice_15_split_1"
+  top: "c_16"
+  top: "h_16"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_16_lstm2_unit_16_1_split"
+  type: "Split"
+  bottom: "h_16"
+  top: "h_16_lstm2_unit_16_1_split_0"
+  top: "h_16_lstm2_unit_16_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_16"
+  type: "Scale"
+  bottom: "h_16_lstm2_unit_16_1_split_0"
+  bottom: "cont_17_lstm2_cont_slice_16_split_0"
+  top: "h_conted_16"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_17"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_16"
+  top: "W_hc_h_16"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_17"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_16"
+  bottom: "W_xc_x_17"
+  top: "gate_input_17"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 2
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_17"
+  type: "LSTMUnitRistretto"
+  bottom: "c_16"
+  bottom: "gate_input_17"
+  bottom: "cont_17_lstm2_cont_slice_16_split_1"
+  top: "c_17"
+  top: "h_17"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_17_lstm2_unit_17_1_split"
+  type: "Split"
+  bottom: "h_17"
+  top: "h_17_lstm2_unit_17_1_split_0"
+  top: "h_17_lstm2_unit_17_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_17"
+  type: "Scale"
+  bottom: "h_17_lstm2_unit_17_1_split_0"
+  bottom: "cont_18_lstm2_cont_slice_17_split_0"
+  top: "h_conted_17"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_18"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_17"
+  top: "W_hc_h_17"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_18"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_17"
+  bottom: "W_xc_x_18"
+  top: "gate_input_18"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 2
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_18"
+  type: "LSTMUnitRistretto"
+  bottom: "c_17"
+  bottom: "gate_input_18"
+  bottom: "cont_18_lstm2_cont_slice_17_split_1"
+  top: "c_18"
+  top: "h_18"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_18_lstm2_unit_18_1_split"
+  type: "Split"
+  bottom: "h_18"
+  top: "h_18_lstm2_unit_18_1_split_0"
+  top: "h_18_lstm2_unit_18_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_18"
+  type: "Scale"
+  bottom: "h_18_lstm2_unit_18_1_split_0"
+  bottom: "cont_19_lstm2_cont_slice_18_split_0"
+  top: "h_conted_18"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_19"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_18"
+  top: "W_hc_h_18"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_19"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_18"
+  bottom: "W_xc_x_19"
+  top: "gate_input_19"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 2
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_19"
+  type: "LSTMUnitRistretto"
+  bottom: "c_18"
+  bottom: "gate_input_19"
+  bottom: "cont_19_lstm2_cont_slice_18_split_1"
+  top: "c_19"
+  top: "h_19"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_19_lstm2_unit_19_1_split"
+  type: "Split"
+  bottom: "h_19"
+  top: "h_19_lstm2_unit_19_1_split_0"
+  top: "h_19_lstm2_unit_19_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_19"
+  type: "Scale"
+  bottom: "h_19_lstm2_unit_19_1_split_0"
+  bottom: "cont_20_lstm2_cont_slice_19_split_0"
+  top: "h_conted_19"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_20"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_19"
+  top: "W_hc_h_19"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_20"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_19"
+  bottom: "W_xc_x_20"
+  top: "gate_input_20"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_20"
+  type: "LSTMUnitRistretto"
+  bottom: "c_19"
+  bottom: "gate_input_20"
+  bottom: "cont_20_lstm2_cont_slice_19_split_1"
+  top: "c_20"
+  top: "h_20"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_20_lstm2_unit_20_1_split"
+  type: "Split"
+  bottom: "h_20"
+  top: "h_20_lstm2_unit_20_1_split_0"
+  top: "h_20_lstm2_unit_20_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_20"
+  type: "Scale"
+  bottom: "h_20_lstm2_unit_20_1_split_0"
+  bottom: "cont_21_lstm2_cont_slice_20_split_0"
+  top: "h_conted_20"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_21"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_20"
+  top: "W_hc_h_20"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_21"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_20"
+  bottom: "W_xc_x_21"
+  top: "gate_input_21"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_21"
+  type: "LSTMUnitRistretto"
+  bottom: "c_20"
+  bottom: "gate_input_21"
+  bottom: "cont_21_lstm2_cont_slice_20_split_1"
+  top: "c_21"
+  top: "h_21"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_21_lstm2_unit_21_1_split"
+  type: "Split"
+  bottom: "h_21"
+  top: "h_21_lstm2_unit_21_1_split_0"
+  top: "h_21_lstm2_unit_21_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_21"
+  type: "Scale"
+  bottom: "h_21_lstm2_unit_21_1_split_0"
+  bottom: "cont_22_lstm2_cont_slice_21_split_0"
+  top: "h_conted_21"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_22"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_21"
+  top: "W_hc_h_21"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_22"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_21"
+  bottom: "W_xc_x_22"
+  top: "gate_input_22"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_22"
+  type: "LSTMUnitRistretto"
+  bottom: "c_21"
+  bottom: "gate_input_22"
+  bottom: "cont_22_lstm2_cont_slice_21_split_1"
+  top: "c_22"
+  top: "h_22"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 4
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_22_lstm2_unit_22_1_split"
+  type: "Split"
+  bottom: "h_22"
+  top: "h_22_lstm2_unit_22_1_split_0"
+  top: "h_22_lstm2_unit_22_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_22"
+  type: "Scale"
+  bottom: "h_22_lstm2_unit_22_1_split_0"
+  bottom: "cont_23_lstm2_cont_slice_22_split_0"
+  top: "h_conted_22"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_23"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_22"
+  top: "W_hc_h_22"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 2
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_23"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_22"
+  bottom: "W_xc_x_23"
+  top: "gate_input_23"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 2
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_23"
+  type: "LSTMUnitRistretto"
+  bottom: "c_22"
+  bottom: "gate_input_23"
+  bottom: "cont_23_lstm2_cont_slice_22_split_1"
+  top: "c_23"
+  top: "h_23"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 4
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_23_lstm2_unit_23_1_split"
+  type: "Split"
+  bottom: "h_23"
+  top: "h_23_lstm2_unit_23_1_split_0"
+  top: "h_23_lstm2_unit_23_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_23"
+  type: "Scale"
+  bottom: "h_23_lstm2_unit_23_1_split_0"
+  bottom: "cont_24_lstm2_cont_slice_23_split_0"
+  top: "h_conted_23"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_24"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_23"
+  top: "W_hc_h_23"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_24"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_23"
+  bottom: "W_xc_x_24"
+  top: "gate_input_24"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_24"
+  type: "LSTMUnitRistretto"
+  bottom: "c_23"
+  bottom: "gate_input_24"
+  bottom: "cont_24_lstm2_cont_slice_23_split_1"
+  top: "c_24"
+  top: "h_24"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 4
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_24_lstm2_unit_24_1_split"
+  type: "Split"
+  bottom: "h_24"
+  top: "h_24_lstm2_unit_24_1_split_0"
+  top: "h_24_lstm2_unit_24_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_24"
+  type: "Scale"
+  bottom: "h_24_lstm2_unit_24_1_split_0"
+  bottom: "cont_25_lstm2_cont_slice_24_split_0"
+  top: "h_conted_24"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_25"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_24"
+  top: "W_hc_h_24"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_25"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_24"
+  bottom: "W_xc_x_25"
+  top: "gate_input_25"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_25"
+  type: "LSTMUnitRistretto"
+  bottom: "c_24"
+  bottom: "gate_input_25"
+  bottom: "cont_25_lstm2_cont_slice_24_split_1"
+  top: "c_25"
+  top: "h_25"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 4
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_25_lstm2_unit_25_1_split"
+  type: "Split"
+  bottom: "h_25"
+  top: "h_25_lstm2_unit_25_1_split_0"
+  top: "h_25_lstm2_unit_25_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_25"
+  type: "Scale"
+  bottom: "h_25_lstm2_unit_25_1_split_0"
+  bottom: "cont_26_lstm2_cont_slice_25_split_0"
+  top: "h_conted_25"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_26"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_25"
+  top: "W_hc_h_25"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_26"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_25"
+  bottom: "W_xc_x_26"
+  top: "gate_input_26"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_26"
+  type: "LSTMUnitRistretto"
+  bottom: "c_25"
+  bottom: "gate_input_26"
+  bottom: "cont_26_lstm2_cont_slice_25_split_1"
+  top: "c_26"
+  top: "h_26"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 4
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_26_lstm2_unit_26_1_split"
+  type: "Split"
+  bottom: "h_26"
+  top: "h_26_lstm2_unit_26_1_split_0"
+  top: "h_26_lstm2_unit_26_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_26"
+  type: "Scale"
+  bottom: "h_26_lstm2_unit_26_1_split_0"
+  bottom: "cont_27_lstm2_cont_slice_26_split_0"
+  top: "h_conted_26"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_27"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_26"
+  top: "W_hc_h_26"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_27"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_26"
+  bottom: "W_xc_x_27"
+  top: "gate_input_27"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_27"
+  type: "LSTMUnitRistretto"
+  bottom: "c_26"
+  bottom: "gate_input_27"
+  bottom: "cont_27_lstm2_cont_slice_26_split_1"
+  top: "c_27"
+  top: "h_27"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 4
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_27_lstm2_unit_27_1_split"
+  type: "Split"
+  bottom: "h_27"
+  top: "h_27_lstm2_unit_27_1_split_0"
+  top: "h_27_lstm2_unit_27_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_27"
+  type: "Scale"
+  bottom: "h_27_lstm2_unit_27_1_split_0"
+  bottom: "cont_28_lstm2_cont_slice_27_split_0"
+  top: "h_conted_27"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_28"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_27"
+  top: "W_hc_h_27"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_28"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_27"
+  bottom: "W_xc_x_28"
+  top: "gate_input_28"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_28"
+  type: "LSTMUnitRistretto"
+  bottom: "c_27"
+  bottom: "gate_input_28"
+  bottom: "cont_28_lstm2_cont_slice_27_split_1"
+  top: "c_28"
+  top: "h_28"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_28_lstm2_unit_28_1_split"
+  type: "Split"
+  bottom: "h_28"
+  top: "h_28_lstm2_unit_28_1_split_0"
+  top: "h_28_lstm2_unit_28_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_28"
+  type: "Scale"
+  bottom: "h_28_lstm2_unit_28_1_split_0"
+  bottom: "cont_29_lstm2_cont_slice_28_split_0"
+  top: "h_conted_28"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_29"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_28"
+  top: "W_hc_h_28"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_29"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_28"
+  bottom: "W_xc_x_29"
+  top: "gate_input_29"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_29"
+  type: "LSTMUnitRistretto"
+  bottom: "c_28"
+  bottom: "gate_input_29"
+  bottom: "cont_29_lstm2_cont_slice_28_split_1"
+  top: "c_29"
+  top: "h_29"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_29_lstm2_unit_29_1_split"
+  type: "Split"
+  bottom: "h_29"
+  top: "h_29_lstm2_unit_29_1_split_0"
+  top: "h_29_lstm2_unit_29_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_29"
+  type: "Scale"
+  bottom: "h_29_lstm2_unit_29_1_split_0"
+  bottom: "cont_30_lstm2_cont_slice_29_split_0"
+  top: "h_conted_29"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_30"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_29"
+  top: "W_hc_h_29"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_30"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_29"
+  bottom: "W_xc_x_30"
+  top: "gate_input_30"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_30"
+  type: "LSTMUnitRistretto"
+  bottom: "c_29"
+  bottom: "gate_input_30"
+  bottom: "cont_30_lstm2_cont_slice_29_split_1"
+  top: "c_30"
+  top: "h_30"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_30_lstm2_unit_30_1_split"
+  type: "Split"
+  bottom: "h_30"
+  top: "h_30_lstm2_unit_30_1_split_0"
+  top: "h_30_lstm2_unit_30_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_30"
+  type: "Scale"
+  bottom: "h_30_lstm2_unit_30_1_split_0"
+  bottom: "cont_31_lstm2_cont_slice_30_split_0"
+  top: "h_conted_30"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_31"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_30"
+  top: "W_hc_h_30"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_31"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_30"
+  bottom: "W_xc_x_31"
+  top: "gate_input_31"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_31"
+  type: "LSTMUnitRistretto"
+  bottom: "c_30"
+  bottom: "gate_input_31"
+  bottom: "cont_31_lstm2_cont_slice_30_split_1"
+  top: "c_31"
+  top: "h_31"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_31_lstm2_unit_31_1_split"
+  type: "Split"
+  bottom: "h_31"
+  top: "h_31_lstm2_unit_31_1_split_0"
+  top: "h_31_lstm2_unit_31_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_31"
+  type: "Scale"
+  bottom: "h_31_lstm2_unit_31_1_split_0"
+  bottom: "cont_32_lstm2_cont_slice_31_split_0"
+  top: "h_conted_31"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_32"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_31"
+  top: "W_hc_h_31"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_32"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_31"
+  bottom: "W_xc_x_32"
+  top: "gate_input_32"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_32"
+  type: "LSTMUnitRistretto"
+  bottom: "c_31"
+  bottom: "gate_input_32"
+  bottom: "cont_32_lstm2_cont_slice_31_split_1"
+  top: "c_32"
+  top: "h_32"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_32_lstm2_unit_32_1_split"
+  type: "Split"
+  bottom: "h_32"
+  top: "h_32_lstm2_unit_32_1_split_0"
+  top: "h_32_lstm2_unit_32_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_32"
+  type: "Scale"
+  bottom: "h_32_lstm2_unit_32_1_split_0"
+  bottom: "cont_33_lstm2_cont_slice_32_split_0"
+  top: "h_conted_32"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_33"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_32"
+  top: "W_hc_h_32"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_33"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_32"
+  bottom: "W_xc_x_33"
+  top: "gate_input_33"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 2
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_33"
+  type: "LSTMUnitRistretto"
+  bottom: "c_32"
+  bottom: "gate_input_33"
+  bottom: "cont_33_lstm2_cont_slice_32_split_1"
+  top: "c_33"
+  top: "h_33"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_33_lstm2_unit_33_1_split"
+  type: "Split"
+  bottom: "h_33"
+  top: "h_33_lstm2_unit_33_1_split_0"
+  top: "h_33_lstm2_unit_33_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_33"
+  type: "Scale"
+  bottom: "h_33_lstm2_unit_33_1_split_0"
+  bottom: "cont_34_lstm2_cont_slice_33_split_0"
+  top: "h_conted_33"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_34"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_33"
+  top: "W_hc_h_33"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_34"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_33"
+  bottom: "W_xc_x_34"
+  top: "gate_input_34"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_34"
+  type: "LSTMUnitRistretto"
+  bottom: "c_33"
+  bottom: "gate_input_34"
+  bottom: "cont_34_lstm2_cont_slice_33_split_1"
+  top: "c_34"
+  top: "h_34"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_34_lstm2_unit_34_1_split"
+  type: "Split"
+  bottom: "h_34"
+  top: "h_34_lstm2_unit_34_1_split_0"
+  top: "h_34_lstm2_unit_34_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_34"
+  type: "Scale"
+  bottom: "h_34_lstm2_unit_34_1_split_0"
+  bottom: "cont_35_lstm2_cont_slice_34_split_0"
+  top: "h_conted_34"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_35"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_34"
+  top: "W_hc_h_34"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_35"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_34"
+  bottom: "W_xc_x_35"
+  top: "gate_input_35"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 2
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_35"
+  type: "LSTMUnitRistretto"
+  bottom: "c_34"
+  bottom: "gate_input_35"
+  bottom: "cont_35_lstm2_cont_slice_34_split_1"
+  top: "c_35"
+  top: "h_35"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_35_lstm2_unit_35_1_split"
+  type: "Split"
+  bottom: "h_35"
+  top: "h_35_lstm2_unit_35_1_split_0"
+  top: "h_35_lstm2_unit_35_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_35"
+  type: "Scale"
+  bottom: "h_35_lstm2_unit_35_1_split_0"
+  bottom: "cont_36_lstm2_cont_slice_35_split_0"
+  top: "h_conted_35"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_36"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_35"
+  top: "W_hc_h_35"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_36"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_35"
+  bottom: "W_xc_x_36"
+  top: "gate_input_36"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_36"
+  type: "LSTMUnitRistretto"
+  bottom: "c_35"
+  bottom: "gate_input_36"
+  bottom: "cont_36_lstm2_cont_slice_35_split_1"
+  top: "c_36"
+  top: "h_36"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_36_lstm2_unit_36_1_split"
+  type: "Split"
+  bottom: "h_36"
+  top: "h_36_lstm2_unit_36_1_split_0"
+  top: "h_36_lstm2_unit_36_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_36"
+  type: "Scale"
+  bottom: "h_36_lstm2_unit_36_1_split_0"
+  bottom: "cont_37_lstm2_cont_slice_36_split_0"
+  top: "h_conted_36"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_37"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_36"
+  top: "W_hc_h_36"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_37"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_36"
+  bottom: "W_xc_x_37"
+  top: "gate_input_37"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_37"
+  type: "LSTMUnitRistretto"
+  bottom: "c_36"
+  bottom: "gate_input_37"
+  bottom: "cont_37_lstm2_cont_slice_36_split_1"
+  top: "c_37"
+  top: "h_37"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_37_lstm2_unit_37_1_split"
+  type: "Split"
+  bottom: "h_37"
+  top: "h_37_lstm2_unit_37_1_split_0"
+  top: "h_37_lstm2_unit_37_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_37"
+  type: "Scale"
+  bottom: "h_37_lstm2_unit_37_1_split_0"
+  bottom: "cont_38_lstm2_cont_slice_37_split_0"
+  top: "h_conted_37"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_38"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_37"
+  top: "W_hc_h_37"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_38"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_37"
+  bottom: "W_xc_x_38"
+  top: "gate_input_38"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_38"
+  type: "LSTMUnitRistretto"
+  bottom: "c_37"
+  bottom: "gate_input_38"
+  bottom: "cont_38_lstm2_cont_slice_37_split_1"
+  top: "c_38"
+  top: "h_38"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_38_lstm2_unit_38_1_split"
+  type: "Split"
+  bottom: "h_38"
+  top: "h_38_lstm2_unit_38_1_split_0"
+  top: "h_38_lstm2_unit_38_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_38"
+  type: "Scale"
+  bottom: "h_38_lstm2_unit_38_1_split_0"
+  bottom: "cont_39_lstm2_cont_slice_38_split_0"
+  top: "h_conted_38"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_39"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_38"
+  top: "W_hc_h_38"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_39"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_38"
+  bottom: "W_xc_x_39"
+  top: "gate_input_39"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_39"
+  type: "LSTMUnitRistretto"
+  bottom: "c_38"
+  bottom: "gate_input_39"
+  bottom: "cont_39_lstm2_cont_slice_38_split_1"
+  top: "c_39"
+  top: "h_39"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_39_lstm2_unit_39_1_split"
+  type: "Split"
+  bottom: "h_39"
+  top: "h_39_lstm2_unit_39_1_split_0"
+  top: "h_39_lstm2_unit_39_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_39"
+  type: "Scale"
+  bottom: "h_39_lstm2_unit_39_1_split_0"
+  bottom: "cont_40_lstm2_cont_slice_39_split_0"
+  top: "h_conted_39"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_40"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_39"
+  top: "W_hc_h_39"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_40"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_39"
+  bottom: "W_xc_x_40"
+  top: "gate_input_40"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_40"
+  type: "LSTMUnitRistretto"
+  bottom: "c_39"
+  bottom: "gate_input_40"
+  bottom: "cont_40_lstm2_cont_slice_39_split_1"
+  top: "c_40"
+  top: "h_40"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_40_lstm2_unit_40_1_split"
+  type: "Split"
+  bottom: "h_40"
+  top: "h_40_lstm2_unit_40_1_split_0"
+  top: "h_40_lstm2_unit_40_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_40"
+  type: "Scale"
+  bottom: "h_40_lstm2_unit_40_1_split_0"
+  bottom: "cont_41_lstm2_cont_slice_40_split_0"
+  top: "h_conted_40"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_41"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_40"
+  top: "W_hc_h_40"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_41"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_40"
+  bottom: "W_xc_x_41"
+  top: "gate_input_41"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 2
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_41"
+  type: "LSTMUnitRistretto"
+  bottom: "c_40"
+  bottom: "gate_input_41"
+  bottom: "cont_41_lstm2_cont_slice_40_split_1"
+  top: "c_41"
+  top: "h_41"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_41_lstm2_unit_41_1_split"
+  type: "Split"
+  bottom: "h_41"
+  top: "h_41_lstm2_unit_41_1_split_0"
+  top: "h_41_lstm2_unit_41_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_41"
+  type: "Scale"
+  bottom: "h_41_lstm2_unit_41_1_split_0"
+  bottom: "cont_42_lstm2_cont_slice_41_split_0"
+  top: "h_conted_41"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_42"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_41"
+  top: "W_hc_h_41"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 2
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_42"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_41"
+  bottom: "W_xc_x_42"
+  top: "gate_input_42"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 2
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_42"
+  type: "LSTMUnitRistretto"
+  bottom: "c_41"
+  bottom: "gate_input_42"
+  bottom: "cont_42_lstm2_cont_slice_41_split_1"
+  top: "c_42"
+  top: "h_42"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_42_lstm2_unit_42_1_split"
+  type: "Split"
+  bottom: "h_42"
+  top: "h_42_lstm2_unit_42_1_split_0"
+  top: "h_42_lstm2_unit_42_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_42"
+  type: "Scale"
+  bottom: "h_42_lstm2_unit_42_1_split_0"
+  bottom: "cont_43_lstm2_cont_slice_42_split_0"
+  top: "h_conted_42"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_43"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_42"
+  top: "W_hc_h_42"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_43"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_42"
+  bottom: "W_xc_x_43"
+  top: "gate_input_43"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_43"
+  type: "LSTMUnitRistretto"
+  bottom: "c_42"
+  bottom: "gate_input_43"
+  bottom: "cont_43_lstm2_cont_slice_42_split_1"
+  top: "c_43"
+  top: "h_43"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_43_lstm2_unit_43_1_split"
+  type: "Split"
+  bottom: "h_43"
+  top: "h_43_lstm2_unit_43_1_split_0"
+  top: "h_43_lstm2_unit_43_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_43"
+  type: "Scale"
+  bottom: "h_43_lstm2_unit_43_1_split_0"
+  bottom: "cont_44_lstm2_cont_slice_43_split_0"
+  top: "h_conted_43"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_44"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_43"
+  top: "W_hc_h_43"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_44"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_43"
+  bottom: "W_xc_x_44"
+  top: "gate_input_44"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_44"
+  type: "LSTMUnitRistretto"
+  bottom: "c_43"
+  bottom: "gate_input_44"
+  bottom: "cont_44_lstm2_cont_slice_43_split_1"
+  top: "c_44"
+  top: "h_44"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_44_lstm2_unit_44_1_split"
+  type: "Split"
+  bottom: "h_44"
+  top: "h_44_lstm2_unit_44_1_split_0"
+  top: "h_44_lstm2_unit_44_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_44"
+  type: "Scale"
+  bottom: "h_44_lstm2_unit_44_1_split_0"
+  bottom: "cont_45_lstm2_cont_slice_44_split_0"
+  top: "h_conted_44"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_45"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_44"
+  top: "W_hc_h_44"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_45"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_44"
+  bottom: "W_xc_x_45"
+  top: "gate_input_45"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_45"
+  type: "LSTMUnitRistretto"
+  bottom: "c_44"
+  bottom: "gate_input_45"
+  bottom: "cont_45_lstm2_cont_slice_44_split_1"
+  top: "c_45"
+  top: "h_45"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_45_lstm2_unit_45_1_split"
+  type: "Split"
+  bottom: "h_45"
+  top: "h_45_lstm2_unit_45_1_split_0"
+  top: "h_45_lstm2_unit_45_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_45"
+  type: "Scale"
+  bottom: "h_45_lstm2_unit_45_1_split_0"
+  bottom: "cont_46_lstm2_cont_slice_45_split_0"
+  top: "h_conted_45"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_46"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_45"
+  top: "W_hc_h_45"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_46"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_45"
+  bottom: "W_xc_x_46"
+  top: "gate_input_46"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_46"
+  type: "LSTMUnitRistretto"
+  bottom: "c_45"
+  bottom: "gate_input_46"
+  bottom: "cont_46_lstm2_cont_slice_45_split_1"
+  top: "c_46"
+  top: "h_46"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_46_lstm2_unit_46_1_split"
+  type: "Split"
+  bottom: "h_46"
+  top: "h_46_lstm2_unit_46_1_split_0"
+  top: "h_46_lstm2_unit_46_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_46"
+  type: "Scale"
+  bottom: "h_46_lstm2_unit_46_1_split_0"
+  bottom: "cont_47_lstm2_cont_slice_46_split_0"
+  top: "h_conted_46"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_47"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_46"
+  top: "W_hc_h_46"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_47"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_46"
+  bottom: "W_xc_x_47"
+  top: "gate_input_47"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_47"
+  type: "LSTMUnitRistretto"
+  bottom: "c_46"
+  bottom: "gate_input_47"
+  bottom: "cont_47_lstm2_cont_slice_46_split_1"
+  top: "c_47"
+  top: "h_47"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_47_lstm2_unit_47_1_split"
+  type: "Split"
+  bottom: "h_47"
+  top: "h_47_lstm2_unit_47_1_split_0"
+  top: "h_47_lstm2_unit_47_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_47"
+  type: "Scale"
+  bottom: "h_47_lstm2_unit_47_1_split_0"
+  bottom: "cont_48_lstm2_cont_slice_47_split_0"
+  top: "h_conted_47"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_48"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_47"
+  top: "W_hc_h_47"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_48"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_47"
+  bottom: "W_xc_x_48"
+  top: "gate_input_48"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_48"
+  type: "LSTMUnitRistretto"
+  bottom: "c_47"
+  bottom: "gate_input_48"
+  bottom: "cont_48_lstm2_cont_slice_47_split_1"
+  top: "c_48"
+  top: "h_48"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_48_lstm2_unit_48_1_split"
+  type: "Split"
+  bottom: "h_48"
+  top: "h_48_lstm2_unit_48_1_split_0"
+  top: "h_48_lstm2_unit_48_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_48"
+  type: "Scale"
+  bottom: "h_48_lstm2_unit_48_1_split_0"
+  bottom: "cont_49_lstm2_cont_slice_48_split_0"
+  top: "h_conted_48"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_49"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_48"
+  top: "W_hc_h_48"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_49"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_48"
+  bottom: "W_xc_x_49"
+  top: "gate_input_49"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_49"
+  type: "LSTMUnitRistretto"
+  bottom: "c_48"
+  bottom: "gate_input_49"
+  bottom: "cont_49_lstm2_cont_slice_48_split_1"
+  top: "c_49"
+  top: "h_49"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_49_lstm2_unit_49_1_split"
+  type: "Split"
+  bottom: "h_49"
+  top: "h_49_lstm2_unit_49_1_split_0"
+  top: "h_49_lstm2_unit_49_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_49"
+  type: "Scale"
+  bottom: "h_49_lstm2_unit_49_1_split_0"
+  bottom: "cont_50_lstm2_cont_slice_49_split_0"
+  top: "h_conted_49"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_50"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_49"
+  top: "W_hc_h_49"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_50"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_49"
+  bottom: "W_xc_x_50"
+  top: "gate_input_50"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_50"
+  type: "LSTMUnitRistretto"
+  bottom: "c_49"
+  bottom: "gate_input_50"
+  bottom: "cont_50_lstm2_cont_slice_49_split_1"
+  top: "c_50"
+  top: "h_50"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_50_lstm2_unit_50_1_split"
+  type: "Split"
+  bottom: "h_50"
+  top: "h_50_lstm2_unit_50_1_split_0"
+  top: "h_50_lstm2_unit_50_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_50"
+  type: "Scale"
+  bottom: "h_50_lstm2_unit_50_1_split_0"
+  bottom: "cont_51_lstm2_cont_slice_50_split_0"
+  top: "h_conted_50"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_51"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_50"
+  top: "W_hc_h_50"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 2
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_51"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_50"
+  bottom: "W_xc_x_51"
+  top: "gate_input_51"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_51"
+  type: "LSTMUnitRistretto"
+  bottom: "c_50"
+  bottom: "gate_input_51"
+  bottom: "cont_51_lstm2_cont_slice_50_split_1"
+  top: "c_51"
+  top: "h_51"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_51_lstm2_unit_51_1_split"
+  type: "Split"
+  bottom: "h_51"
+  top: "h_51_lstm2_unit_51_1_split_0"
+  top: "h_51_lstm2_unit_51_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_51"
+  type: "Scale"
+  bottom: "h_51_lstm2_unit_51_1_split_0"
+  bottom: "cont_52_lstm2_cont_slice_51_split_0"
+  top: "h_conted_51"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_52"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_51"
+  top: "W_hc_h_51"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_52"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_51"
+  bottom: "W_xc_x_52"
+  top: "gate_input_52"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_52"
+  type: "LSTMUnitRistretto"
+  bottom: "c_51"
+  bottom: "gate_input_52"
+  bottom: "cont_52_lstm2_cont_slice_51_split_1"
+  top: "c_52"
+  top: "h_52"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_52_lstm2_unit_52_1_split"
+  type: "Split"
+  bottom: "h_52"
+  top: "h_52_lstm2_unit_52_1_split_0"
+  top: "h_52_lstm2_unit_52_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_52"
+  type: "Scale"
+  bottom: "h_52_lstm2_unit_52_1_split_0"
+  bottom: "cont_53_lstm2_cont_slice_52_split_0"
+  top: "h_conted_52"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_53"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_52"
+  top: "W_hc_h_52"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_53"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_52"
+  bottom: "W_xc_x_53"
+  top: "gate_input_53"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_53"
+  type: "LSTMUnitRistretto"
+  bottom: "c_52"
+  bottom: "gate_input_53"
+  bottom: "cont_53_lstm2_cont_slice_52_split_1"
+  top: "c_53"
+  top: "h_53"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_53_lstm2_unit_53_1_split"
+  type: "Split"
+  bottom: "h_53"
+  top: "h_53_lstm2_unit_53_1_split_0"
+  top: "h_53_lstm2_unit_53_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_53"
+  type: "Scale"
+  bottom: "h_53_lstm2_unit_53_1_split_0"
+  bottom: "cont_54_lstm2_cont_slice_53_split_0"
+  top: "h_conted_53"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_54"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_53"
+  top: "W_hc_h_53"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_54"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_53"
+  bottom: "W_xc_x_54"
+  top: "gate_input_54"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_54"
+  type: "LSTMUnitRistretto"
+  bottom: "c_53"
+  bottom: "gate_input_54"
+  bottom: "cont_54_lstm2_cont_slice_53_split_1"
+  top: "c_54"
+  top: "h_54"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_54_lstm2_unit_54_1_split"
+  type: "Split"
+  bottom: "h_54"
+  top: "h_54_lstm2_unit_54_1_split_0"
+  top: "h_54_lstm2_unit_54_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_54"
+  type: "Scale"
+  bottom: "h_54_lstm2_unit_54_1_split_0"
+  bottom: "cont_55_lstm2_cont_slice_54_split_0"
+  top: "h_conted_54"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_55"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_54"
+  top: "W_hc_h_54"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_55"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_54"
+  bottom: "W_xc_x_55"
+  top: "gate_input_55"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_55"
+  type: "LSTMUnitRistretto"
+  bottom: "c_54"
+  bottom: "gate_input_55"
+  bottom: "cont_55_lstm2_cont_slice_54_split_1"
+  top: "c_55"
+  top: "h_55"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_55_lstm2_unit_55_1_split"
+  type: "Split"
+  bottom: "h_55"
+  top: "h_55_lstm2_unit_55_1_split_0"
+  top: "h_55_lstm2_unit_55_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_55"
+  type: "Scale"
+  bottom: "h_55_lstm2_unit_55_1_split_0"
+  bottom: "cont_56_lstm2_cont_slice_55_split_0"
+  top: "h_conted_55"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_56"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_55"
+  top: "W_hc_h_55"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 2
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_56"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_55"
+  bottom: "W_xc_x_56"
+  top: "gate_input_56"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_56"
+  type: "LSTMUnitRistretto"
+  bottom: "c_55"
+  bottom: "gate_input_56"
+  bottom: "cont_56_lstm2_cont_slice_55_split_1"
+  top: "c_56"
+  top: "h_56"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_56_lstm2_unit_56_1_split"
+  type: "Split"
+  bottom: "h_56"
+  top: "h_56_lstm2_unit_56_1_split_0"
+  top: "h_56_lstm2_unit_56_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_56"
+  type: "Scale"
+  bottom: "h_56_lstm2_unit_56_1_split_0"
+  bottom: "cont_57_lstm2_cont_slice_56_split_0"
+  top: "h_conted_56"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_57"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_56"
+  top: "W_hc_h_56"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_57"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_56"
+  bottom: "W_xc_x_57"
+  top: "gate_input_57"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_57"
+  type: "LSTMUnitRistretto"
+  bottom: "c_56"
+  bottom: "gate_input_57"
+  bottom: "cont_57_lstm2_cont_slice_56_split_1"
+  top: "c_57"
+  top: "h_57"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_57_lstm2_unit_57_1_split"
+  type: "Split"
+  bottom: "h_57"
+  top: "h_57_lstm2_unit_57_1_split_0"
+  top: "h_57_lstm2_unit_57_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_57"
+  type: "Scale"
+  bottom: "h_57_lstm2_unit_57_1_split_0"
+  bottom: "cont_58_lstm2_cont_slice_57_split_0"
+  top: "h_conted_57"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_58"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_57"
+  top: "W_hc_h_57"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_58"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_57"
+  bottom: "W_xc_x_58"
+  top: "gate_input_58"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_58"
+  type: "LSTMUnitRistretto"
+  bottom: "c_57"
+  bottom: "gate_input_58"
+  bottom: "cont_58_lstm2_cont_slice_57_split_1"
+  top: "c_58"
+  top: "h_58"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_58_lstm2_unit_58_1_split"
+  type: "Split"
+  bottom: "h_58"
+  top: "h_58_lstm2_unit_58_1_split_0"
+  top: "h_58_lstm2_unit_58_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_58"
+  type: "Scale"
+  bottom: "h_58_lstm2_unit_58_1_split_0"
+  bottom: "cont_59_lstm2_cont_slice_58_split_0"
+  top: "h_conted_58"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_59"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_58"
+  top: "W_hc_h_58"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_59"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_58"
+  bottom: "W_xc_x_59"
+  top: "gate_input_59"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_59"
+  type: "LSTMUnitRistretto"
+  bottom: "c_58"
+  bottom: "gate_input_59"
+  bottom: "cont_59_lstm2_cont_slice_58_split_1"
+  top: "c_59"
+  top: "h_59"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_59_lstm2_unit_59_1_split"
+  type: "Split"
+  bottom: "h_59"
+  top: "h_59_lstm2_unit_59_1_split_0"
+  top: "h_59_lstm2_unit_59_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_59"
+  type: "Scale"
+  bottom: "h_59_lstm2_unit_59_1_split_0"
+  bottom: "cont_60_lstm2_cont_slice_59_split_0"
+  top: "h_conted_59"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_60"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_59"
+  top: "W_hc_h_59"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_60"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_59"
+  bottom: "W_xc_x_60"
+  top: "gate_input_60"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_60"
+  type: "LSTMUnitRistretto"
+  bottom: "c_59"
+  bottom: "gate_input_60"
+  bottom: "cont_60_lstm2_cont_slice_59_split_1"
+  top: "c_60"
+  top: "h_60"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_60_lstm2_unit_60_1_split"
+  type: "Split"
+  bottom: "h_60"
+  top: "h_60_lstm2_unit_60_1_split_0"
+  top: "h_60_lstm2_unit_60_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_60"
+  type: "Scale"
+  bottom: "h_60_lstm2_unit_60_1_split_0"
+  bottom: "cont_61_lstm2_cont_slice_60_split_0"
+  top: "h_conted_60"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_61"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_60"
+  top: "W_hc_h_60"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_61"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_60"
+  bottom: "W_xc_x_61"
+  top: "gate_input_61"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_61"
+  type: "LSTMUnitRistretto"
+  bottom: "c_60"
+  bottom: "gate_input_61"
+  bottom: "cont_61_lstm2_cont_slice_60_split_1"
+  top: "c_61"
+  top: "h_61"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_61_lstm2_unit_61_1_split"
+  type: "Split"
+  bottom: "h_61"
+  top: "h_61_lstm2_unit_61_1_split_0"
+  top: "h_61_lstm2_unit_61_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_61"
+  type: "Scale"
+  bottom: "h_61_lstm2_unit_61_1_split_0"
+  bottom: "cont_62_lstm2_cont_slice_61_split_0"
+  top: "h_conted_61"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_62"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_61"
+  top: "W_hc_h_61"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_62"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_61"
+  bottom: "W_xc_x_62"
+  top: "gate_input_62"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_62"
+  type: "LSTMUnitRistretto"
+  bottom: "c_61"
+  bottom: "gate_input_62"
+  bottom: "cont_62_lstm2_cont_slice_61_split_1"
+  top: "c_62"
+  top: "h_62"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_62_lstm2_unit_62_1_split"
+  type: "Split"
+  bottom: "h_62"
+  top: "h_62_lstm2_unit_62_1_split_0"
+  top: "h_62_lstm2_unit_62_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_62"
+  type: "Scale"
+  bottom: "h_62_lstm2_unit_62_1_split_0"
+  bottom: "cont_63_lstm2_cont_slice_62_split_0"
+  top: "h_conted_62"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_63"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_62"
+  top: "W_hc_h_62"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_63"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_62"
+  bottom: "W_xc_x_63"
+  top: "gate_input_63"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_63"
+  type: "LSTMUnitRistretto"
+  bottom: "c_62"
+  bottom: "gate_input_63"
+  bottom: "cont_63_lstm2_cont_slice_62_split_1"
+  top: "c_63"
+  top: "h_63"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_63_lstm2_unit_63_1_split"
+  type: "Split"
+  bottom: "h_63"
+  top: "h_63_lstm2_unit_63_1_split_0"
+  top: "h_63_lstm2_unit_63_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_63"
+  type: "Scale"
+  bottom: "h_63_lstm2_unit_63_1_split_0"
+  bottom: "cont_64_lstm2_cont_slice_63_split_0"
+  top: "h_conted_63"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_64"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_63"
+  top: "W_hc_h_63"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_64"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_63"
+  bottom: "W_xc_x_64"
+  top: "gate_input_64"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_64"
+  type: "LSTMUnitRistretto"
+  bottom: "c_63"
+  bottom: "gate_input_64"
+  bottom: "cont_64_lstm2_cont_slice_63_split_1"
+  top: "c_64"
+  top: "h_64"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_64_lstm2_unit_64_1_split"
+  type: "Split"
+  bottom: "h_64"
+  top: "h_64_lstm2_unit_64_1_split_0"
+  top: "h_64_lstm2_unit_64_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_64"
+  type: "Scale"
+  bottom: "h_64_lstm2_unit_64_1_split_0"
+  bottom: "cont_65_lstm2_cont_slice_64_split_0"
+  top: "h_conted_64"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_65"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_64"
+  top: "W_hc_h_64"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_65"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_64"
+  bottom: "W_xc_x_65"
+  top: "gate_input_65"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_65"
+  type: "LSTMUnitRistretto"
+  bottom: "c_64"
+  bottom: "gate_input_65"
+  bottom: "cont_65_lstm2_cont_slice_64_split_1"
+  top: "c_65"
+  top: "h_65"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_65_lstm2_unit_65_1_split"
+  type: "Split"
+  bottom: "h_65"
+  top: "h_65_lstm2_unit_65_1_split_0"
+  top: "h_65_lstm2_unit_65_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_65"
+  type: "Scale"
+  bottom: "h_65_lstm2_unit_65_1_split_0"
+  bottom: "cont_66_lstm2_cont_slice_65_split_0"
+  top: "h_conted_65"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_66"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_65"
+  top: "W_hc_h_65"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_66"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_65"
+  bottom: "W_xc_x_66"
+  top: "gate_input_66"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_66"
+  type: "LSTMUnitRistretto"
+  bottom: "c_65"
+  bottom: "gate_input_66"
+  bottom: "cont_66_lstm2_cont_slice_65_split_1"
+  top: "c_66"
+  top: "h_66"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_66_lstm2_unit_66_1_split"
+  type: "Split"
+  bottom: "h_66"
+  top: "h_66_lstm2_unit_66_1_split_0"
+  top: "h_66_lstm2_unit_66_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_66"
+  type: "Scale"
+  bottom: "h_66_lstm2_unit_66_1_split_0"
+  bottom: "cont_67_lstm2_cont_slice_66_split_0"
+  top: "h_conted_66"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_67"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_66"
+  top: "W_hc_h_66"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 2
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_67"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_66"
+  bottom: "W_xc_x_67"
+  top: "gate_input_67"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_67"
+  type: "LSTMUnitRistretto"
+  bottom: "c_66"
+  bottom: "gate_input_67"
+  bottom: "cont_67_lstm2_cont_slice_66_split_1"
+  top: "c_67"
+  top: "h_67"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_67_lstm2_unit_67_1_split"
+  type: "Split"
+  bottom: "h_67"
+  top: "h_67_lstm2_unit_67_1_split_0"
+  top: "h_67_lstm2_unit_67_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_67"
+  type: "Scale"
+  bottom: "h_67_lstm2_unit_67_1_split_0"
+  bottom: "cont_68_lstm2_cont_slice_67_split_0"
+  top: "h_conted_67"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_68"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_67"
+  top: "W_hc_h_67"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_68"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_67"
+  bottom: "W_xc_x_68"
+  top: "gate_input_68"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_68"
+  type: "LSTMUnitRistretto"
+  bottom: "c_67"
+  bottom: "gate_input_68"
+  bottom: "cont_68_lstm2_cont_slice_67_split_1"
+  top: "c_68"
+  top: "h_68"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_68_lstm2_unit_68_1_split"
+  type: "Split"
+  bottom: "h_68"
+  top: "h_68_lstm2_unit_68_1_split_0"
+  top: "h_68_lstm2_unit_68_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_68"
+  type: "Scale"
+  bottom: "h_68_lstm2_unit_68_1_split_0"
+  bottom: "cont_69_lstm2_cont_slice_68_split_0"
+  top: "h_conted_68"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_69"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_68"
+  top: "W_hc_h_68"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_69"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_68"
+  bottom: "W_xc_x_69"
+  top: "gate_input_69"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_69"
+  type: "LSTMUnitRistretto"
+  bottom: "c_68"
+  bottom: "gate_input_69"
+  bottom: "cont_69_lstm2_cont_slice_68_split_1"
+  top: "c_69"
+  top: "h_69"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_69_lstm2_unit_69_1_split"
+  type: "Split"
+  bottom: "h_69"
+  top: "h_69_lstm2_unit_69_1_split_0"
+  top: "h_69_lstm2_unit_69_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_69"
+  type: "Scale"
+  bottom: "h_69_lstm2_unit_69_1_split_0"
+  bottom: "cont_70_lstm2_cont_slice_69_split_0"
+  top: "h_conted_69"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_70"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_69"
+  top: "W_hc_h_69"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_70"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_69"
+  bottom: "W_xc_x_70"
+  top: "gate_input_70"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_70"
+  type: "LSTMUnitRistretto"
+  bottom: "c_69"
+  bottom: "gate_input_70"
+  bottom: "cont_70_lstm2_cont_slice_69_split_1"
+  top: "c_70"
+  top: "h_70"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_70_lstm2_unit_70_1_split"
+  type: "Split"
+  bottom: "h_70"
+  top: "h_70_lstm2_unit_70_1_split_0"
+  top: "h_70_lstm2_unit_70_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_70"
+  type: "Scale"
+  bottom: "h_70_lstm2_unit_70_1_split_0"
+  bottom: "cont_71_lstm2_cont_slice_70_split_0"
+  top: "h_conted_70"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_71"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_70"
+  top: "W_hc_h_70"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_71"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_70"
+  bottom: "W_xc_x_71"
+  top: "gate_input_71"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_71"
+  type: "LSTMUnitRistretto"
+  bottom: "c_70"
+  bottom: "gate_input_71"
+  bottom: "cont_71_lstm2_cont_slice_70_split_1"
+  top: "c_71"
+  top: "h_71"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_71_lstm2_unit_71_1_split"
+  type: "Split"
+  bottom: "h_71"
+  top: "h_71_lstm2_unit_71_1_split_0"
+  top: "h_71_lstm2_unit_71_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_71"
+  type: "Scale"
+  bottom: "h_71_lstm2_unit_71_1_split_0"
+  bottom: "cont_72_lstm2_cont_slice_71_split_0"
+  top: "h_conted_71"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_72"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_71"
+  top: "W_hc_h_71"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_72"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_71"
+  bottom: "W_xc_x_72"
+  top: "gate_input_72"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_72"
+  type: "LSTMUnitRistretto"
+  bottom: "c_71"
+  bottom: "gate_input_72"
+  bottom: "cont_72_lstm2_cont_slice_71_split_1"
+  top: "c_72"
+  top: "h_72"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_72_lstm2_unit_72_1_split"
+  type: "Split"
+  bottom: "h_72"
+  top: "h_72_lstm2_unit_72_1_split_0"
+  top: "h_72_lstm2_unit_72_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_72"
+  type: "Scale"
+  bottom: "h_72_lstm2_unit_72_1_split_0"
+  bottom: "cont_73_lstm2_cont_slice_72_split_0"
+  top: "h_conted_72"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_73"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_72"
+  top: "W_hc_h_72"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_73"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_72"
+  bottom: "W_xc_x_73"
+  top: "gate_input_73"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_73"
+  type: "LSTMUnitRistretto"
+  bottom: "c_72"
+  bottom: "gate_input_73"
+  bottom: "cont_73_lstm2_cont_slice_72_split_1"
+  top: "c_73"
+  top: "h_73"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_73_lstm2_unit_73_1_split"
+  type: "Split"
+  bottom: "h_73"
+  top: "h_73_lstm2_unit_73_1_split_0"
+  top: "h_73_lstm2_unit_73_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_73"
+  type: "Scale"
+  bottom: "h_73_lstm2_unit_73_1_split_0"
+  bottom: "cont_74_lstm2_cont_slice_73_split_0"
+  top: "h_conted_73"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_74"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_73"
+  top: "W_hc_h_73"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_74"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_73"
+  bottom: "W_xc_x_74"
+  top: "gate_input_74"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_74"
+  type: "LSTMUnitRistretto"
+  bottom: "c_73"
+  bottom: "gate_input_74"
+  bottom: "cont_74_lstm2_cont_slice_73_split_1"
+  top: "c_74"
+  top: "h_74"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_74_lstm2_unit_74_1_split"
+  type: "Split"
+  bottom: "h_74"
+  top: "h_74_lstm2_unit_74_1_split_0"
+  top: "h_74_lstm2_unit_74_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_74"
+  type: "Scale"
+  bottom: "h_74_lstm2_unit_74_1_split_0"
+  bottom: "cont_75_lstm2_cont_slice_74_split_0"
+  top: "h_conted_74"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_75"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_74"
+  top: "W_hc_h_74"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_75"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_74"
+  bottom: "W_xc_x_75"
+  top: "gate_input_75"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_75"
+  type: "LSTMUnitRistretto"
+  bottom: "c_74"
+  bottom: "gate_input_75"
+  bottom: "cont_75_lstm2_cont_slice_74_split_1"
+  top: "c_75"
+  top: "h_75"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_75_lstm2_unit_75_1_split"
+  type: "Split"
+  bottom: "h_75"
+  top: "h_75_lstm2_unit_75_1_split_0"
+  top: "h_75_lstm2_unit_75_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_75"
+  type: "Scale"
+  bottom: "h_75_lstm2_unit_75_1_split_0"
+  bottom: "cont_76_lstm2_cont_slice_75_split_0"
+  top: "h_conted_75"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_76"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_75"
+  top: "W_hc_h_75"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_76"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_75"
+  bottom: "W_xc_x_76"
+  top: "gate_input_76"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_76"
+  type: "LSTMUnitRistretto"
+  bottom: "c_75"
+  bottom: "gate_input_76"
+  bottom: "cont_76_lstm2_cont_slice_75_split_1"
+  top: "c_76"
+  top: "h_76"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_76_lstm2_unit_76_1_split"
+  type: "Split"
+  bottom: "h_76"
+  top: "h_76_lstm2_unit_76_1_split_0"
+  top: "h_76_lstm2_unit_76_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_76"
+  type: "Scale"
+  bottom: "h_76_lstm2_unit_76_1_split_0"
+  bottom: "cont_77_lstm2_cont_slice_76_split_0"
+  top: "h_conted_76"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_77"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_76"
+  top: "W_hc_h_76"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_77"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_76"
+  bottom: "W_xc_x_77"
+  top: "gate_input_77"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_77"
+  type: "LSTMUnitRistretto"
+  bottom: "c_76"
+  bottom: "gate_input_77"
+  bottom: "cont_77_lstm2_cont_slice_76_split_1"
+  top: "c_77"
+  top: "h_77"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_77_lstm2_unit_77_1_split"
+  type: "Split"
+  bottom: "h_77"
+  top: "h_77_lstm2_unit_77_1_split_0"
+  top: "h_77_lstm2_unit_77_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_77"
+  type: "Scale"
+  bottom: "h_77_lstm2_unit_77_1_split_0"
+  bottom: "cont_78_lstm2_cont_slice_77_split_0"
+  top: "h_conted_77"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_78"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_77"
+  top: "W_hc_h_77"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_78"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_77"
+  bottom: "W_xc_x_78"
+  top: "gate_input_78"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_78"
+  type: "LSTMUnitRistretto"
+  bottom: "c_77"
+  bottom: "gate_input_78"
+  bottom: "cont_78_lstm2_cont_slice_77_split_1"
+  top: "c_78"
+  top: "h_78"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_78_lstm2_unit_78_1_split"
+  type: "Split"
+  bottom: "h_78"
+  top: "h_78_lstm2_unit_78_1_split_0"
+  top: "h_78_lstm2_unit_78_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_78"
+  type: "Scale"
+  bottom: "h_78_lstm2_unit_78_1_split_0"
+  bottom: "cont_79_lstm2_cont_slice_78_split_0"
+  top: "h_conted_78"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_79"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_78"
+  top: "W_hc_h_78"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_79"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_78"
+  bottom: "W_xc_x_79"
+  top: "gate_input_79"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_79"
+  type: "LSTMUnitRistretto"
+  bottom: "c_78"
+  bottom: "gate_input_79"
+  bottom: "cont_79_lstm2_cont_slice_78_split_1"
+  top: "c_79"
+  top: "h_79"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_79_lstm2_unit_79_1_split"
+  type: "Split"
+  bottom: "h_79"
+  top: "h_79_lstm2_unit_79_1_split_0"
+  top: "h_79_lstm2_unit_79_1_split_1"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_conted_79"
+  type: "Scale"
+  bottom: "h_79_lstm2_unit_79_1_split_0"
+  bottom: "cont_80_lstm2_cont_slice_79_split_0"
+  top: "h_conted_79"
+  phase: TEST
+  scale_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_transform_80"
+  type: "InnerProductRistretto"
+  bottom: "h_conted_79"
+  top: "W_hc_h_79"
+  param {
+    name: "W_hc"
+  }
+  phase: TEST
+  inner_product_param {
+    num_output: 400
+    bias_term: false
+    weight_filler {
+      type: "xavier"
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 5
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_gate_input_80"
+  type: "EltwiseRistretto"
+  bottom: "W_hc_h_79"
+  bottom: "W_xc_x_80"
+  top: "gate_input_80"
+  phase: TEST
+  eltwise_param {
+    operation: SUM
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_unit_80"
+  type: "LSTMUnitRistretto"
+  bottom: "c_79"
+  bottom: "gate_input_80"
+  bottom: "cont_80_lstm2_cont_slice_79_split_1"
+  top: "c_80"
+  top: "h_80"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_"
+  type: "Split"
+  bottom: "c_80"
+  top: "c_T"
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 3
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "lstm2_h_concat"
+  type: "Concat"
+  bottom: "h_1_lstm2_unit_1_1_split_1"
+  bottom: "h_2_lstm2_unit_2_1_split_1"
+  bottom: "h_3_lstm2_unit_3_1_split_1"
+  bottom: "h_4_lstm2_unit_4_1_split_1"
+  bottom: "h_5_lstm2_unit_5_1_split_1"
+  bottom: "h_6_lstm2_unit_6_1_split_1"
+  bottom: "h_7_lstm2_unit_7_1_split_1"
+  bottom: "h_8_lstm2_unit_8_1_split_1"
+  bottom: "h_9_lstm2_unit_9_1_split_1"
+  bottom: "h_10_lstm2_unit_10_1_split_1"
+  bottom: "h_11_lstm2_unit_11_1_split_1"
+  bottom: "h_12_lstm2_unit_12_1_split_1"
+  bottom: "h_13_lstm2_unit_13_1_split_1"
+  bottom: "h_14_lstm2_unit_14_1_split_1"
+  bottom: "h_15_lstm2_unit_15_1_split_1"
+  bottom: "h_16_lstm2_unit_16_1_split_1"
+  bottom: "h_17_lstm2_unit_17_1_split_1"
+  bottom: "h_18_lstm2_unit_18_1_split_1"
+  bottom: "h_19_lstm2_unit_19_1_split_1"
+  bottom: "h_20_lstm2_unit_20_1_split_1"
+  bottom: "h_21_lstm2_unit_21_1_split_1"
+  bottom: "h_22_lstm2_unit_22_1_split_1"
+  bottom: "h_23_lstm2_unit_23_1_split_1"
+  bottom: "h_24_lstm2_unit_24_1_split_1"
+  bottom: "h_25_lstm2_unit_25_1_split_1"
+  bottom: "h_26_lstm2_unit_26_1_split_1"
+  bottom: "h_27_lstm2_unit_27_1_split_1"
+  bottom: "h_28_lstm2_unit_28_1_split_1"
+  bottom: "h_29_lstm2_unit_29_1_split_1"
+  bottom: "h_30_lstm2_unit_30_1_split_1"
+  bottom: "h_31_lstm2_unit_31_1_split_1"
+  bottom: "h_32_lstm2_unit_32_1_split_1"
+  bottom: "h_33_lstm2_unit_33_1_split_1"
+  bottom: "h_34_lstm2_unit_34_1_split_1"
+  bottom: "h_35_lstm2_unit_35_1_split_1"
+  bottom: "h_36_lstm2_unit_36_1_split_1"
+  bottom: "h_37_lstm2_unit_37_1_split_1"
+  bottom: "h_38_lstm2_unit_38_1_split_1"
+  bottom: "h_39_lstm2_unit_39_1_split_1"
+  bottom: "h_40_lstm2_unit_40_1_split_1"
+  bottom: "h_41_lstm2_unit_41_1_split_1"
+  bottom: "h_42_lstm2_unit_42_1_split_1"
+  bottom: "h_43_lstm2_unit_43_1_split_1"
+  bottom: "h_44_lstm2_unit_44_1_split_1"
+  bottom: "h_45_lstm2_unit_45_1_split_1"
+  bottom: "h_46_lstm2_unit_46_1_split_1"
+  bottom: "h_47_lstm2_unit_47_1_split_1"
+  bottom: "h_48_lstm2_unit_48_1_split_1"
+  bottom: "h_49_lstm2_unit_49_1_split_1"
+  bottom: "h_50_lstm2_unit_50_1_split_1"
+  bottom: "h_51_lstm2_unit_51_1_split_1"
+  bottom: "h_52_lstm2_unit_52_1_split_1"
+  bottom: "h_53_lstm2_unit_53_1_split_1"
+  bottom: "h_54_lstm2_unit_54_1_split_1"
+  bottom: "h_55_lstm2_unit_55_1_split_1"
+  bottom: "h_56_lstm2_unit_56_1_split_1"
+  bottom: "h_57_lstm2_unit_57_1_split_1"
+  bottom: "h_58_lstm2_unit_58_1_split_1"
+  bottom: "h_59_lstm2_unit_59_1_split_1"
+  bottom: "h_60_lstm2_unit_60_1_split_1"
+  bottom: "h_61_lstm2_unit_61_1_split_1"
+  bottom: "h_62_lstm2_unit_62_1_split_1"
+  bottom: "h_63_lstm2_unit_63_1_split_1"
+  bottom: "h_64_lstm2_unit_64_1_split_1"
+  bottom: "h_65_lstm2_unit_65_1_split_1"
+  bottom: "h_66_lstm2_unit_66_1_split_1"
+  bottom: "h_67_lstm2_unit_67_1_split_1"
+  bottom: "h_68_lstm2_unit_68_1_split_1"
+  bottom: "h_69_lstm2_unit_69_1_split_1"
+  bottom: "h_70_lstm2_unit_70_1_split_1"
+  bottom: "h_71_lstm2_unit_71_1_split_1"
+  bottom: "h_72_lstm2_unit_72_1_split_1"
+  bottom: "h_73_lstm2_unit_73_1_split_1"
+  bottom: "h_74_lstm2_unit_74_1_split_1"
+  bottom: "h_75_lstm2_unit_75_1_split_1"
+  bottom: "h_76_lstm2_unit_76_1_split_1"
+  bottom: "h_77_lstm2_unit_77_1_split_1"
+  bottom: "h_78_lstm2_unit_78_1_split_1"
+  bottom: "h_79_lstm2_unit_79_1_split_1"
+  bottom: "h_80"
+  top: "h"
+  phase: TEST
+  concat_param {
+    axis: 0
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "h_pseudoloss"
+  type: "Reduction"
+  bottom: "h"
+  top: "h_pseudoloss"
+  loss_weight: 1
+  phase: TEST
+  quantization_param {
+    bw_params: 8
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}

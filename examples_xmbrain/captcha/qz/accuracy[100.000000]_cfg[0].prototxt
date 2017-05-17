@@ -1,0 +1,196 @@
+name: "lstm_ctc_net"
+state {
+  phase: TEST
+}
+layer {
+  name: "data"
+  type: "HDF5Data"
+  top: "data"
+  top: "label"
+  include {
+    phase: TEST
+  }
+  hdf5_data_param {
+    source: "/home/carplate_recognize/hdf5_captcha/testing.list"
+    batch_size: 512
+  }
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+}
+layer {
+  name: "indicator"
+  type: "ContinuationIndicator"
+  top: "indicator"
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+  continuation_indicator_param {
+    time_step: 80
+    batch_size: 512
+  }
+}
+layer {
+  name: "permuted_data"
+  type: "Permute"
+  bottom: "data"
+  top: "permuted_data"
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+  permute_param {
+    order: 3
+    order: 0
+    order: 1
+    order: 2
+  }
+}
+layer {
+  name: "lstm1"
+  type: "LSTMRistretto"
+  bottom: "permuted_data"
+  bottom: "indicator"
+  top: "lstm1"
+  recurrent_param {
+    num_output: 100
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+    quantize_file: "./captcha/qz/lstm1_quantize.prototxt"
+  }
+}
+layer {
+  name: "lstm2"
+  type: "LSTMRistretto"
+  bottom: "lstm1"
+  bottom: "indicator"
+  top: "lstm2"
+  recurrent_param {
+    num_output: 100
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 7
+    is_sign_data: 1
+    quantize_file: "./captcha/qz/lstm2_quantize.prototxt"
+  }
+}
+layer {
+  name: "fc1"
+  type: "InnerProductRistretto"
+  bottom: "lstm2"
+  top: "fc1"
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 11
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+    axis: 2
+  }
+  quantization_param {
+    bw_params: 8
+    fl_params: 4
+    bw_layer_data: 8
+    fl_layer_data: 1
+    is_sign_data: 1
+  }
+}
+layer {
+  name: "ctc_loss"
+  type: "CtcLoss"
+  bottom: "fc1"
+  bottom: "label"
+  top: "ctc_loss"
+  loss_weight: 1
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 10
+    is_sign_data: 0
+  }
+  ctc_loss_param {
+    alphabet_size: 11
+    time_step: 80
+    blank_label: 10
+  }
+}
+layer {
+  name: "permute_fc"
+  type: "Permute"
+  bottom: "fc1"
+  top: "premuted_fc"
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 1
+    is_sign_data: 1
+  }
+  permute_param {
+    order: 1
+    order: 0
+    order: 2
+  }
+}
+layer {
+  name: "accuracy"
+  type: "LabelsequenceAccuracy"
+  bottom: "premuted_fc"
+  bottom: "label"
+  top: "accuracy"
+  quantization_param {
+    bw_params: 0
+    fl_params: 0
+    bw_layer_data: 8
+    fl_layer_data: 8
+    is_sign_data: 0
+  }
+  labelsequence_accuracy_param {
+    blank_label: 10
+  }
+}

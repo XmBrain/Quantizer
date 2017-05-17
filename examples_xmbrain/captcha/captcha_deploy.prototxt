@@ -1,0 +1,174 @@
+name: "lstm_ctc_net"
+
+###########################################################
+#layer {
+#  name: "data"  
+#  type: "Input"  
+#  top: "data"
+#  input_param 
+#  {
+#    shape: { dim: 1 dim: 3 dim: 30 dim: 80 } 
+#  }
+#}
+#
+#下面这段在定点化的时候使用一下
+layer {
+    name: "data"
+    type: "HDF5Data"
+    top: "data"
+    top: "label"
+    include {
+        phase: TEST
+    }
+    hdf5_data_param {
+        source: "/home/carplate_recognize/hdf5_captcha/testing.list"
+        batch_size: 512
+    }
+}
+
+layer {
+    name: "indicator"
+    type: "ContinuationIndicator"        #产生连续性标志的类，显而易见。
+    top: "indicator"
+    continuation_indicator_param {
+        time_step:  80                   #每80列为一个周期
+        batch_size: 512                  #512张图片为N个独立的stream
+    }
+}
+#======【注意】======
+#由generator_dataset可以知道，输入的dateset中data.shape=[N,C,H,W] label.shape=[N,5]
+#又因为我们知道caffe中LSTM层的输入blob，要求的shape=【T,N,???】
+#所以我们需要使用那个Permute来进行shape的调整以满足要求。
+#因为我们是将30x80的图像中的列作为不同的时刻的输入信息，所以T=80,也就是图像的列。
+#所以我们看到permute_param，是把最后的列调整到最前面作为输入的。
+layer {
+    name: "permuted_data"
+    type: "Permute"			#就是一个transpose操作
+    bottom: "data"
+    top: "permuted_data"
+    permute_param {
+        order: 3            #T=80,80列=W
+        order: 0            #N=N,独立的stream
+        order: 1            #C=3,三个通道
+        order: 2            #H=30,一次输入的向量的宽度
+    }
+}
+
+layer {
+    name: "lstm1"
+    type: "LSTM"
+    bottom: "permuted_data" 	#shape=[T,N,C,H]-> T=W
+    bottom: "indicator"     	#shape=[T*N]-{0,{1}x80}
+    top: "lstm1"                #根据LSTM的结构我们知道top.shape=[T,N,100]
+    recurrent_param {
+        num_output: 100
+        weight_filler {
+          type: "xavier"
+        }
+        bias_filler {
+          type: "constant"
+          value: 0
+        }
+    }
+}
+
+layer {
+    name: "lstm2"
+    type: "LSTM"
+    bottom: "lstm1"          	#shape=[T,N,100]
+    bottom: "indicator"      	#shape=[T*N]-{0,{1}x80}
+    top: "lstm2"             	#shape=[T,N,100]
+    recurrent_param {
+        num_output: 100     
+        weight_filler {
+          type: "xavier"
+        }
+        bias_filler {
+          type: "constant"
+          value: 0
+        }
+    }
+}
+
+layer {
+  name: "fc1"
+  type: "InnerProduct"
+  bottom: "lstm2"
+  top: "fc1"                #shape=[T,N,11]
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 11
+	axis: 2
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+
+#====================连蒙带猜的解释如下====================
+#输入的shape=[T,N,11]，理解成是T个时刻的输出,每一个时刻输出的是一个长度为11的向量，内容可以理解为如下
+#如果此时刻输出为有效数据，如1->[0,1,0,0,0,0,0,0,0,0,0]
+#如果此时刻输出为有效数据，如3->[0,0,0,1,0,0,0,0,0,0,0]
+#如果此时刻输出为无效数据，则blank->[0,0,0,0,0,0,0,0,0,0,1]  black=10
+#这样就基本上理解CtcLoss的工作形状和SoftmaxLoss,有点相似的了。从时间维度去看Loss的计算过程
+#
+#那么输出结果也很容易理解了，就是把T个时刻的输出向量中那些非blank的向量取出就是最终的结果了。
+#例如:
+#T:0->[0,1,0,0,0,0,0,0,0,0,0]   => 1
+#T:1->[0,0,1,0,0,0,0,0,0,0,0]   => 2
+#T:2->[0,0,0,0,0,0,0,0,0,0,1]   => blank
+#T:3->[0,0,0,0,0,0,0,0,0,0,1]   => blank
+#T:4->[0,0,0,0,0,0,0,0,0,0,1]   => blank
+#T:5->[0,0,0,0,0,0,0,0,0,1,0]   => 9
+#T:7->[1,0,0,0,0,0,0,0,0,0,0]   => 0
+#...
+#T:78->[0,0,2,0,0,0,0,0,0,0,0]  => 2
+#T:79->[0,1,0,0,0,0,0,0,0,0,0]  => 1
+
+layer {
+	name: "ctc_loss"
+	type: "CtcLoss"
+	bottom: "fc1"           #shape=[T,N,11]
+	bottom: "label"         #shape=[N,5]
+	top: "ctc_loss"         #???有点类似于是softmax???
+	loss_weight: 1.0
+	ctc_loss_param {
+		blank_label: 10     #就是表示向量中的第几个位表示blank
+		alphabet_size: 11   #总长度为11
+        time_step: 80
+	}
+}
+
+layer {
+  name: "permute_fc"
+  type: "Permute"		    #矩阵转置操作
+  bottom: "fc1"         	#shape=[T,N,11]
+  top: "premuted_fc"    	#shape=[N,T,11]
+  permute_param {           #转成[N,T,11]
+    order: 1
+    order: 0
+    order: 2
+  }
+}
+layer {
+  name: "accuracy"
+  type: "LabelsequenceAccuracy"
+  bottom: "premuted_fc"
+  bottom: "label"
+  top: "accuracy"
+  labelsequence_accuracy_param {
+    blank_label: 10
+  }
+}
+

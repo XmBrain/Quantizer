@@ -8,6 +8,7 @@
 #include "caffe/layers/lstm_layer.hpp"
 #include "caffe/util/math_functions.hpp"
 
+#include "ristretto/quantization.hpp"
 namespace caffe {
 
 template <typename Dtype>
@@ -89,6 +90,7 @@ void LSTMLayer<Dtype>::FillUnrolledNet(NetParameter* net_param) const {
 
   LayerParameter* input_layer_param = net_param->add_layer();
   input_layer_param->set_type("Input");
+  input_layer_param->set_name("Input_c0h0");
   InputParameter* input_param = input_layer_param->mutable_input_param();
 
   input_layer_param->add_top("c_0");
@@ -238,7 +240,118 @@ void LSTMLayer<Dtype>::FillUnrolledNet(NetParameter* net_param) const {
   net_param->add_layer()->CopyFrom(output_concat_layer);
 }
 
+//geyijun@2017-05-11
+//统计展开层的数据范围
+template <typename Dtype>
+void LSTMLayer<Dtype>::RangeInUnrolledNet() 
+{
+	vector<string> layer_names =  RecurrentLayer<Dtype>::unrolled_net_->layer_names();
+	RecurrentLayer<Dtype>::unrolled_net_->RangeInLayers(layer_names,&max_params_,&max_data_,&min_data_);
+}
+
+//geyijun@2017-05-11
+//统计展开层的数据进行定标
+template <typename Dtype>
+void LSTMLayer<Dtype>::CalcFlSign(int data_bw,int param_bw)
+{
+	printf("-----------------------------------------LSTMLayer CalcFlSign Enter-------------------------------------------------------------\n");
+	vector<string> layer_names =  RecurrentLayer<Dtype>::unrolled_net_->layer_names();
+	for(int i=0;i<layer_names.size();i++)
+	{
+		printf("[geyijun] layer[%d][%s] --->max_params[%f] max_data[%f] min_data[%f]\n",i,layer_names[i].c_str(),max_params_[i],max_data_[i],min_data_[i]);
+	}
+	printf("-----------------------------------------------------------------------------------------------------\n");
+
+	//计算参数部分的Q
+	map<int,vector<int> >::iterator iter = calc_params_fl_.find(param_bw);
+	if (iter == calc_params_fl_.end())
+	{
+		printf("[geyijun] LSTMLayer::CalcFlSign--------->params's bw fl  \n");
+		vector<int> params_fl;
+		params_fl.resize(max_params_.size(),0);
+		for (int layer_id = 0; layer_id < max_params_.size(); layer_id++)
+		{
+			if(max_params_[layer_id] != 0)
+			{
+				int il  = (int)ceil(log2(max_params_[layer_id])+1);
+				int fl = param_bw-il;
+				params_fl[layer_id] = fl;
+				printf("[geyijun] LSTMLayer::layer[%d][%s] --->params_bw[%d] params_fl[%d]\n",
+					layer_id,layer_names[layer_id].c_str(),param_bw,params_fl[layer_id]);
+			}
+		}
+		calc_params_fl_.insert(map<int,vector<int> >::value_type(param_bw,params_fl));
+	}
+	printf("------------------------------------------------------------------------------------------------------\n");
+
+	//计算数据部分的Q
+	iter = calc_valid_data_fl_.find(data_bw);
+	if (iter == calc_valid_data_fl_.end())
+	{
+		printf("[geyijun] LSTMLayer::CalcFlSign--------->data's bw fl  \n");	
+		vector<int> valid_data_sign;
+		vector<int> valid_data_fl;
+		valid_data_sign.resize(max_params_.size(),0);
+		valid_data_fl.resize(max_params_.size(),0);
+		for (int layer_id = 0; layer_id < max_params_.size(); layer_id++)
+		{
+		
+			int is_sign = (min_data_[layer_id]>=0)?0:1;
+			valid_data_sign[layer_id] = is_sign;	
+			if(max_data_[layer_id] == 0)
+				max_data_[layer_id] = 1;
+			int il  = (int)ceil(log2(max_data_[layer_id])+is_sign);	
+			valid_data_fl[layer_id] = data_bw-il;	
+			printf("[geyijun] LSTMLayer::layer[%d][%s] --->data_bw[%d] data_fl[%d] data_sign[%d]\n",
+				layer_id,layer_names[layer_id].c_str(),data_bw,valid_data_fl[layer_id],valid_data_sign[layer_id]);
+		}
+		calc_valid_data_fl_.insert(map<int,vector<int> >::value_type(data_bw,valid_data_fl));		
+		calc_valid_data_sign_.insert(map<int,vector<int> >::value_type(data_bw,valid_data_sign));	
+	}
+	printf("--------------------------------------------------LSTMLayer CalcFlSign Exit----------------------------------------------------\n");
+}
+
+template <typename Dtype>
+void LSTMLayer<Dtype>::WriteFlSign(int data_bw,int param_bw,string filename)
+{
+	printf("--------------------------------------------------LSTMLayer WriteFlSign Enter----------------------------------------------------\n");
+
+	//Write the net to a NetParameter
+	NetParameter net_param;
+	RecurrentLayer<Dtype>::unrolled_net_->ToProtoNotBlobs(&net_param);
+	vector<string> layer_names =  RecurrentLayer<Dtype>::unrolled_net_->layer_names();
+
+	//下面为了参数能够对上
+	map<int,vector<int> >::iterator iter = calc_params_fl_.find(param_bw);
+	assert(iter != calc_params_fl_.end());
+	
+	vector<int> v_params_bw;
+	v_params_bw.resize(layer_names.size(),param_bw);
+	vector<int> v_params_fl = iter->second;
+	assert(v_params_fl.size() == layer_names.size());
+
+	iter = calc_valid_data_fl_.find(data_bw);
+	assert(iter != calc_valid_data_fl_.end());
+	vector<int> v_data_bw;
+	v_data_bw.resize(layer_names.size(),data_bw);
+	vector<int> v_data_fl = iter->second;
+	assert(v_data_fl.size() == layer_names.size());
+
+	iter = calc_valid_data_sign_.begin();
+	assert(iter != calc_valid_data_sign_.end());
+	vector<int> v_data_sign = iter->second;
+	assert(v_data_sign.size() == layer_names.size());
+	Quantization::EditNetQuantizationParameter(&net_param,layer_names,
+										v_params_bw,v_params_fl,
+										v_data_bw,v_data_fl,v_data_sign);
+	WriteProtoToTextFile(net_param, filename);
+	printf("--------------------------------------------------LSTMLayer WriteFlSign Exit----------------------------------------------------\n");
+
+	return ;
+}
+
 INSTANTIATE_CLASS(LSTMLayer);
 REGISTER_LAYER_CLASS(LSTM);
 
 }  // namespace caffe
+

@@ -42,6 +42,10 @@ caffe_option(ALLOW_LMDB_NOLOCK "Allow MDB_NOLOCK when reading LMDB files (only i
 # ---[ Dependencies
 include(cmake/Dependencies.cmake)
 
+#geyijun@2017-05-04
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")   #
+list(APPEND CUDA_NVCC_FLAGS "-std=c++11")
+
 # ---[ Flags
 if(UNIX OR APPLE)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -Wall")

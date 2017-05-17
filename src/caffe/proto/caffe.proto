@@ -408,20 +408,47 @@ message LayerParameter {
   optional ThresholdParameter threshold_param = 128;
   optional TileParameter tile_param = 138;
   optional WindowDataParameter window_data_param = 129;
+  optional CtcLossParameter ctc_loss_param = 200;
+  optional ContinuationIndicatorParameter continuation_indicator_param = 201;
+  optional PermuteParameter permute_param = 202;
+  optional LabelsequenceAccuracyParameter labelsequence_accuracy_param = 203;
+  optional ReverseParameter reverse_param = 204;
 }
 
 // Message for layers with reduced word with arithmetic
 //geyijun@2016-12-08
 message QuantizationParameter{
-  //鍙傛暟
+  //参数的Q
   optional uint32 bw_params = 1 [default = 16];
   optional int32 fl_params = 2 [default = 8];
-  //鏁版嵁
+  //数据的Q
   optional uint32 bw_layer_data = 3 [default = 16];
   optional int32 fl_layer_data = 4 [default = 8];
   optional int32 is_sign_data = 5 [default = 1];
+
+  //LSTM层内部展开
+  optional string quantize_file = 6;
+}
+message CtcLossParameter {
+    optional uint32 alphabet_size = 1 [default = 0];
+    optional uint32 time_step = 3 [default = 0];
+    optional int32 blank_label = 4 [default = 0];
+}
+message ContinuationIndicatorParameter {
+    optional uint32 time_step = 1 [default = 0];
+    optional uint32 batch_size = 2 [default = 0];
 }
 
+message PermuteParameter {
+      // The new orders of the axes of data. Notice it should be with
+      // in the same range as the input data, and it starts from 0.
+      // Do not provide repeated order.
+      repeated uint32 order = 1;
+}
+
+message LabelsequenceAccuracyParameter {
+  optional int32 blank_label = 1 [default = 0];
+}
 // Message that stores parameters used to apply transformation
 // to the data layer's data
 message TransformationParameter {
@@ -1105,6 +1132,20 @@ message ReshapeParameter {
   optional int32 num_axes = 3 [default = -1];
 }
 
+message ReverseParameter {
+  // axis controls the data axis which shall be inverted.
+  // The layout of the content will not be inverted
+  //
+  // The default axis is 0 that means:
+  //   data_previous[n] == data_afterwards[N - n -1]
+  // where N is the shape of axis(n)
+  //
+  // Usually this layer will be used with recurrent layers to invert the
+  // time axis which is axis 0
+  // This layer will therefore swap the order in time but not the
+  // order of the actual data.
+  optional int32 axis = 1 [default = 0];
+}
 message ScaleParameter {
   // The first axis of bottom[0] (the first input Blob) along which to apply
   // bottom[1] (the second input Blob).  May be negative to index from the end

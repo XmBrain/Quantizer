@@ -53,6 +53,7 @@ void RecurrentLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
 
   LayerParameter* input_layer_param = net_param.add_layer();
   input_layer_param->set_type("Input");
+  input_layer_param->set_name("Input_x");
   InputParameter* input_param = input_layer_param->mutable_input_param();
   input_layer_param->add_top("x");
   BlobShape input_shape;
@@ -250,7 +251,7 @@ void RecurrentLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
   // TODO: somehow make this work non-hackily.
   if (this->phase_ == TEST) {
     unrolled_net_->ShareWeights();
-  }
+  } 
 
   DCHECK_EQ(recur_input_blobs_.size(), recur_output_blobs_.size());
   if (!expose_hidden_) {

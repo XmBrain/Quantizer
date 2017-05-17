@@ -118,7 +118,8 @@ class Net {
   void ToProto(NetParameter* param, bool write_diff = false) const;
   /// @brief Writes the net to an HDF5 file.
   void ToHDF5(const string& filename, bool write_diff = false) const;
-
+  //geyijun @ 2017-05-16
+  void ToProtoNotBlobs(NetParameter* param, bool write_diff = false)const;
   /// @brief returns the network name.
   inline const string& name() const { return name_; }
   /// @brief returns the layer names
@@ -231,6 +232,7 @@ class Net {
   void RangeInLayers(vector<string>& layer_name,vector<Dtype>*max_params,vector<Dtype>* max_data,vector<Dtype>* min_data);
   Dtype findMax(Blob<Dtype>* blob);
   Dtype findMin(Blob<Dtype>* blob);
+    
  protected:
   // Helpers for Init.
   /// @brief Append a new top blob to the net.

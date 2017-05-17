@@ -37,9 +37,9 @@ class RecurrentLayer : public Layer<Dtype> {
   virtual inline int MinBottomBlobs() const {
     int min_bottoms = 2;
     if (this->layer_param_.recurrent_param().expose_hidden()) {
-      vector<string> inputs;
-      this->RecurrentInputBlobNames(&inputs);
-      min_bottoms += inputs.size();
+      vector<string> inputs;			
+      this->RecurrentInputBlobNames(&inputs);		
+      min_bottoms += inputs.size();	
     }
     return min_bottoms;
   }
@@ -146,7 +146,7 @@ class RecurrentLayer : public Layer<Dtype> {
       const vector<Blob<Dtype>*>& top);
   virtual void Backward_cpu(const vector<Blob<Dtype>*>& top,
       const vector<bool>& propagate_down, const vector<Blob<Dtype>*>& bottom);
-
+public:
   /// @brief A Net to implement the Recurrent functionality.
   shared_ptr<Net<Dtype> > unrolled_net_;
 

@@ -2,11 +2,14 @@
 #include "boost/algorithm/string.hpp"
 
 #include "caffe/caffe.hpp"
+#include "caffe/layers/lstm_layer.hpp"
 #include "ristretto/quantization.hpp"
+
 
 using caffe::Caffe;
 using caffe::Net;
 using caffe::Layer;
+using caffe::LSTMLayer;
 using caffe::string;
 using caffe::vector;
 using caffe::NetStateRule;
@@ -31,12 +34,12 @@ int 	GetStringValue(const char *filename, const char *str, const char separate, 
 		printf("<ERROR>:open %s failed\n", filename);
 		return -1;
 	}
+	sprintf(tmpstr, "%s%c", str, separate);	
 	while(fgets(line, sizeof(line), fp)) /*lager than BYTES_PER_LINE is bug*/
 	{
-		pos = strstr(line, str);
+		pos = strstr(line, tmpstr);
 		if (NULL != pos)	
-		{	
-			sprintf(tmpstr, "%s%c", str, separate);
+		{
 			pos += strlen(tmpstr);	
 			if (NULL != raw){
 				if (strlen(pos) > 128)
@@ -70,7 +73,7 @@ float my_pow(int q)
 	}
 	if((q < START_Q)||(q >= STOP_Q))	
 	{		
-		printf(" Error ;-------------my_pow::: out of range-------------!!!\n");		
+		printf(" Error ;-------------my_pow::: out of range [q=%d]-------------!!!\n",q);		
 		assert(0);		
 		return 1;
 	}	
@@ -102,13 +105,13 @@ int DumpData2Txt(const char *filename,int width, int height, float*data)
 	fclose(fp);
 	return 0;
 }
-
+string Quantization::model_quantized_;
 Quantization::Quantization(string model, string weights, string model_quantized,
       int iterations, double error_margin, string gpus,string quantize_cfg,
       string debug_out_float,string debug_out_trim) {
 	  this->model_ = model;
 	  this->weights_ = weights;
-	  this->model_quantized_ = model_quantized;
+	  model_quantized_ = model_quantized;
 	  this->iterations_ = iterations;
 	  this->error_margin_ = error_margin;
 	  this->gpus_ = gpus;
@@ -133,9 +136,9 @@ Quantization::Quantization(string model, string weights, string model_quantized,
 //用校验集才能够统一起来。
 void Quantization::QuantizeNet()
 {
-  	printf("[geyijun]---------Quantization:QuantizeNet---------start\n");
+	printf("[geyijun]---------Quantization:QuantizeNet---------start\n");
 	CheckWritePermissions(model_quantized_+"./ttt.txt");
-	SetGpu();
+	SetGpu();	
 
 	//加载网络结构文件(获取网络层的名字)
 	NetParameter param;
@@ -151,7 +154,7 @@ void Quantization::QuantizeNet()
 			if(rule.has_phase() && (caffe::TEST == rule.phase()))
 			{
 				layer_included = true;;
-			}	
+			}
       		}
 		if(layer_included)
 		{
@@ -171,6 +174,7 @@ void Quantization::QuantizeNet()
 	Net<float>*net_range = new Net<float>(param, NULL);
 	net_range->CopyTrainedLayersFrom(weights_);
 	CalcFlSign(10,net_range);
+	CalcFlSign_ForLSTM(net_range);	//计算LSTM  层的Q	,写入配置文件中
 	delete net_range;
 	sleep(5);
 
@@ -186,10 +190,10 @@ void Quantization::QuantizeNet()
 	printf("[geyijun] get--------->test_score_baseline_ = %f\n",test_score_baseline_);	
 	sleep(5);
 
-	//再在校验集上进行全局最优搜索.
-	printf("[geyijun] try to search globol target\n");
-	cfg_valid_data_bw_skip_.resize(cfg_valid_data_bw_.size());
-	for(int i=0;i<cfg_valid_data_bw_.size();i++)
+	//再在校验集上进行全局最优搜索.		
+	printf("[geyijun] try to search globol target\n");	
+	cfg_valid_data_bw_skip_.resize(cfg_valid_data_bw_.size());	
+	for(int i=0;i<cfg_valid_data_bw_.size();i++)	
 	{
 		if(cfg_valid_data_bw_skip_[i] ==1)
 		{
@@ -199,15 +203,17 @@ void Quantization::QuantizeNet()
 		NetParameter param;
 		caffe::ReadNetParamsFromTextFileOrDie(model_, &param);
 		param.mutable_state()->set_phase(caffe::TEST);
-		EditNetQuantizationParameter(&param,calc_params_bw_,calc_params_fl_,
+		printf("[geyijun] ==============================\n");	
+		Quantization::EditNetQuantizationParameter(&param,layer_names_,
+								calc_params_bw_,calc_params_fl_,
 								cfg_valid_data_bw_[i],calc_valid_data_fl_[i],
 								calc_valid_data_sign_[i]);
-    		Net<float>*net_val = new Net<float>(param, NULL);
-    		net_val->CopyTrainedLayersFrom(weights_);
+		Net<float>*net_val = new Net<float>(param, NULL);
+		net_val->CopyTrainedLayersFrom(weights_);
 
-		float accuracy;
+		float accuracy;	
 		CalcBatchAccuracy(iterations_,net_val,&accuracy,NULL,0);
-		printf("[geyijun] get--------->accuracy = %f\n",accuracy);	
+		printf("[geyijun] get--------->accuracy = %f\n",accuracy);
 		if ( accuracy + error_margin_ / 100 > test_score_baseline_ ) 
 		{
 			//输出到文件中去
@@ -248,7 +254,7 @@ void Quantization::CheckWritePermissions(const string path)
 	} 
 	else 
 	{
-		LOG(FATAL) << "Missing write permissions";
+		LOG(FATAL) << "Missing write permissions" << path;
 	}
 }
 
@@ -300,7 +306,6 @@ vector<int> Quantization::GetValidBw(string cur_name)
 {
 	vector<int> valid_bw;
 	valid_bw.clear();
-
 	char tmp[32] = {0,};
 	memset(tmp,0,sizeof(tmp));
 	if (GetStringValue(quantize_cfg_.c_str(), cur_name.c_str(), '=', tmp, NULL) >= 0)
@@ -517,8 +522,8 @@ void Quantization::CalcFlSign(const int iterations,Net<float>* caffe_net)
 		}
 		printf("\n");
 
-		vector<int> fl_a_vote;	//投票给fl_a  的个数		
-		vector<int> fl_b_vote;	//投票给fl_b  的个数		
+		vector<int> fl_a_vote;	//投票给fl_a  的个数	
+		vector<int> fl_b_vote;	//投票给fl_b  的个数	
 		fl_a_vote.resize(layer_names_.size());	
 		fl_b_vote.resize(layer_names_.size());	
 
@@ -535,6 +540,8 @@ void Quantization::CalcFlSign(const int iterations,Net<float>* caffe_net)
 				printf("[geyijun] layer_names[%s] blob_name[%s] ---> shape[%s]\n",layer_names_[layer_id].c_str(),blob_name.c_str(),blob->shape_string().c_str());
 
 				int is_sign = (min_data_[layer_id]>=0)?0:1;
+				if(max_data_[layer_id] == 0)
+					max_data_[layer_id] = 1;
 				int il  = (int)ceil(log2(max_data_[layer_id])+is_sign);	
 				int fl_a = cfg_valid_data_bw_[i][layer_id]-il;	//定标
 				int fl_b = fl_a+1;
@@ -549,7 +556,7 @@ void Quantization::CalcFlSign(const int iterations,Net<float>* caffe_net)
 					fl_b_vote[layer_id]++;
 				}
 				printf("[geyijun] layer[%d][%s] --->lost_a[%f] lost_b[%f] ; a_vote[%d],b_vote[%d]\n",layer_id,layer_names_[layer_id].c_str(),lost_a,lost_b,fl_a_vote[layer_id],fl_b_vote[layer_id]);
-			}			
+			}
 		}
 		vector<int> valid_data_sign;
 		vector<int> valid_data_fl;
@@ -592,12 +599,55 @@ void Quantization::CalcFlSign(const int iterations,Net<float>* caffe_net)
 	printf("[geyijun] CalcFlSign--------->end\n");	
 }
 
+//geyijun@2017-05-11
+//对其下可能存在的LSTM  层进行定标
+void Quantization::CalcFlSign_ForLSTM(Net<float>* caffe_net)
+{
+	//针对每一组配置都需要对LSTM  下的展开层来进行定标
+	for (int i = 0; i < cfg_valid_data_bw_.size(); i++)
+	{
+		printf("---------------------------------------CalcFlSign_ForLSTM---------------------------------------------------------------\n");
+		printf("[geyijun] try to test cfg_valid_data_bw_[%d]=",i);
+		for(int j=0;j<cfg_valid_data_bw_[i].size();j++)
+		{
+			printf("<%02d>",cfg_valid_data_bw_[i][j]);
+		}
+		printf("\n");
+
+		for (int layer_id = 0; layer_id < layer_names_.size(); layer_id++)
+		{
+			Layer<float>* layer = caffe_net->layer_by_name(layer_names_[layer_id]).get();
+			if (strcmp(layer->type(), "LSTM") == 0) 
+			{
+				//暂时先不支持多组配置...(偷个懒)
+				assert(cfg_valid_data_bw_.size() == 1);
+			
+				//统计内部展开网络的Q
+				((LSTMLayer<float> *)layer)->CalcFlSign(cfg_valid_data_bw_[i][layer_id],cfg_valid_data_bw_[i][layer_id]);
+
+				//将这个内部展开网络的Q信息写入到文件中去
+				//通过文件名来确立关系
+				char prototxt_name[128] = {0,};
+				sprintf(prototxt_name,"%s/%s_quantize.prototxt",model_quantized_.c_str(),layer_names_[layer_id].c_str());
+				((LSTMLayer<float> *)layer)->WriteFlSign(cfg_valid_data_bw_[i][layer_id],cfg_valid_data_bw_[i][layer_id],prototxt_name);
+			}
+		}
+	}
+	return ;	
+}
+
 //这个函数在校验集中用来最终误差
 void Quantization::CalcBatchAccuracy(const int iterations,Net<float>* caffe_net,
 										float* accuracy,float* cur_accuracy,const int score_number)
 {
 	printf("[geyijun] CalcBatchAccuracy--------->1\n");	
 	LOG(INFO) << "Running for " << iterations << " iterations.";
+	//临时使用
+	if(accuracy)	*accuracy = 100;
+	if(cur_accuracy)	*cur_accuracy = 100;
+	printf("[geyijun] CalcBatchAccuracy--------->end [just debug]\n");
+	return ;
+	
 	vector<int>	test_score_output_id;	
 	vector<float>	test_score;	//所有输出network_out_blobs 的所有元素的记录(二维拉成一维)
 	for (int i = 0; i < iterations; ++i) 
@@ -616,6 +666,7 @@ void Quantization::CalcBatchAccuracy(const int iterations,Net<float>* caffe_net,
 		//只有一个输出blobs 即result.size() == 1;
 		//则一个输出blobs 只有一个元素即result[j]->count()=1
 		// Keep track of network score over multiple batches.
+
 		int idx = 0;	//把二维拉成一维的索引
 		for (int j = 0; j < result.size(); ++j) 
 		{
@@ -651,6 +702,7 @@ void Quantization::CalcBatchAccuracy(const int iterations,Net<float>* caffe_net,
 }
 
 void Quantization::EditNetQuantizationParameter(NetParameter* param,
+							vector<string> layer_names,
 							vector<int> params_bw,vector<int> params_fl,
 							vector<int> data_bw,vector<int> data_fl,
 							vector<int> data_sign)
@@ -672,13 +724,13 @@ void Quantization::EditNetQuantizationParameter(NetParameter* param,
 			continue;
 		}
 		const string& name = param_layer->name();
-		vector<string>::iterator found_iter = find(layer_names_.begin(), layer_names_.end(),name); 
-    		if ( found_iter == layer_names_.end( ) ) //没找到
+		vector<string>::iterator found_iter = find(layer_names.begin(), layer_names.end(),name); 
+    		if ( found_iter == layer_names.end( ) ) //没找到
     		{
     			continue;
     		}
-		int found_index = found_iter - layer_names_.begin();
-		const string& type_name = param_layer->type();
+		int found_index = found_iter - layer_names.begin();
+		const string type_name = param_layer->type();
 		//初步支持量化计算的层的种类(需要逐步增加)
 		if((type_name == "InnerProduct")
 		||(type_name == "Convolution")
@@ -686,10 +738,22 @@ void Quantization::EditNetQuantizationParameter(NetParameter* param,
 		||(type_name == "LRN")
 		||(type_name == "Pooling")
 		||(type_name == "ReLU")
-		||(type_name == "Data"))
+		||(type_name == "Data")
+		//为LSTM 而增加的内容
+		||(type_name == "LSTM")
+		||(type_name == "LSTMUnit")
+		||(type_name == "Slice")
+		||(type_name == "Eltwise"))
 		{
 			string new_typename = type_name +"Ristretto";
 			param_layer->set_type(new_typename);
+		}
+		if(type_name == "LSTM")
+		{
+			//lstm 内部展开，用一个文件来表示
+			string filename = model_quantized_+param_layer->name()+"_quantize.prototxt";
+			param_layer->mutable_quantization_param()->set_quantize_file(filename);  
+			printf("[geyijun] set_quantize_file--------->[%s]\n",filename.c_str());	
 		}
 		param_layer->mutable_quantization_param()->set_bw_params(params_bw[found_index]);  
 		param_layer->mutable_quantization_param()->set_fl_params(params_fl[found_index]);

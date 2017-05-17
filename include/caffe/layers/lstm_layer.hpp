@@ -48,16 +48,31 @@ template <typename Dtype>
 class LSTMLayer : public RecurrentLayer<Dtype> {
  public:
   explicit LSTMLayer(const LayerParameter& param)
-      : RecurrentLayer<Dtype>(param) {}
+      : RecurrentLayer<Dtype>(param){}
 
   virtual inline const char* type() const { return "LSTM"; }
 
- protected:
+protected:
   virtual void FillUnrolledNet(NetParameter* net_param) const;
   virtual void RecurrentInputBlobNames(vector<string>* names) const;
   virtual void RecurrentOutputBlobNames(vector<string>* names) const;
   virtual void RecurrentInputShapes(vector<BlobShape>* shapes) const;
   virtual void OutputBlobNames(vector<string>* names) const;
+
+public:
+  //统计内部展开网络的各个层的数据范围
+  virtual void RangeInUnrolledNet();
+  //定标
+  virtual void CalcFlSign(int data_bw,int param_bw); 
+  //写文件
+  virtual void WriteFlSign(int data_bw,int param_bw,string filename);
+
+protected:  
+  vector<Dtype> max_params_, max_data_, min_data_;//统计所得的最值
+
+  map<int,vector<int> > calc_params_fl_;		//参数
+  map<int,vector<int> > calc_valid_data_fl_;		//对应与上面的每一个bw 的fl 
+  map<int,vector<int> > calc_valid_data_sign_;	//对应与上面的每一个bw 的s_sign
 };
 
 /**
