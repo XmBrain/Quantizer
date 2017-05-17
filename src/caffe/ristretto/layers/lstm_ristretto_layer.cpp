@@ -50,16 +50,25 @@ void LSTMRistrettoLayer<Dtype>::FillUnrolledNet(NetParameter* net_param) const
 			if(layer_name == quantize_layer_name)
 			{
 				printf("[DEBUG]---------------Set Quantize Param Layer[%s]\n",quantize_layer_name.c_str());
-				param_layer->mutable_quantization_param()->set_bw_params
-					(quantize_param_layer->quantization_param().bw_params());  
-				param_layer->mutable_quantization_param()->set_fl_params
-					(quantize_param_layer->quantization_param().fl_params());  
-				param_layer->mutable_quantization_param()->set_bw_layer_data
-					(quantize_param_layer->quantization_param().bw_layer_data());  
-				param_layer->mutable_quantization_param()->set_fl_layer_data
-					(quantize_param_layer->quantization_param().fl_layer_data());  
-				param_layer->mutable_quantization_param()->set_is_sign_data
-					(quantize_param_layer->quantization_param().is_sign_data());  
+				if(NULL != strstr(quantize_param_layer->type().c_str(),"Ristretto"))
+				{
+					//修改类型
+					const string type_name = param_layer->type();
+					string new_typename = type_name +"Ristretto";
+					param_layer->set_type(new_typename);
+					//增加参数
+					param_layer->mutable_quantization_param()->set_bw_params
+						(quantize_param_layer->quantization_param().bw_params());  
+					param_layer->mutable_quantization_param()->set_fl_params
+						(quantize_param_layer->quantization_param().fl_params());  
+					param_layer->mutable_quantization_param()->set_bw_layer_data
+						(quantize_param_layer->quantization_param().bw_layer_data());  
+					param_layer->mutable_quantization_param()->set_fl_layer_data
+						(quantize_param_layer->quantization_param().fl_layer_data());  
+					param_layer->mutable_quantization_param()->set_is_sign_data
+						(quantize_param_layer->quantization_param().is_sign_data());  
+				}
+				
 				break;
 			}
 		}
