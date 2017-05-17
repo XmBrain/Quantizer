@@ -188,17 +188,12 @@ public:
 	explicit LSTMRistrettoLayer(const LayerParameter& param);
 	virtual inline const char* type() const { return "LSTMRistretto"; }
 protected:
-	//virtual void FillUnrolledNet(NetParameter* net_param) const;
+	virtual void FillUnrolledNet(NetParameter* net_param) const;
 	
 	virtual void Forward_cpu(const vector<Blob<Dtype>*>& bottom,
 								const vector<Blob<Dtype>*>& top);
 	virtual void Forward_gpu(const vector<Blob<Dtype>*>& bottom,
 								const vector<Blob<Dtype>*>& top);	
-
-	//定标信息通过文件名来描述
-	string quantize_file_;
-	NetParameter quantize_net_param_;
-	
 };
 
 template <typename Dtype>
